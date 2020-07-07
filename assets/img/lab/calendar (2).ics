@@ -1,0 +1,11 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+URL:https://www.eventbrite.com/e/bptn-global-masterclass-user-experienceux-in-tech-presented-by-shopify-tickets-106162984344
+DTSTART:20200604T160000Z
+DTEND:20200604T170000Z
+SUMMARY:BPTN Global Masterclass - User Experience(UX) in Tech, Presented by Shopify
+DESCRIPTION:For details, go here:\nhttps://www.eventbrite.com/e/bptn-global-masterclass-user-experienceux-in-tech-presented-by-shopify-tickets-106162984344\n\nTo access the online event page, go here:\nhttps://www.eventbrite.com/x/bptn-global-masterclass-user-experienceux-in-tech-presented-by-shopify-tickets-106162984344
+LOCATION:
+END:VEVENT
+END:VCALENDAR

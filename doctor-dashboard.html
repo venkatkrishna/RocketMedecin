@@ -59,9 +59,9 @@
 								<a href="index.html">Home</a>
 							</li>
 							<li class="has-submenu active">
-								<a href="">Doctors <i class="fas fa-chevron-down"></i></a>
+								<a href="doctor_home.html">Doctors<i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li class="active"><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
+									<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
 									<li><a href="appointments.html">Appointments</a></li>
 									<li><a href="schedule-timings.html">Schedule Timing</a></li>
 									<li><a href="my-patients.html">Patients List</a></li>
@@ -74,7 +74,7 @@
 								</ul>
 							</li>	
 							<li class="has-submenu">
-								<a href="">Patients <i class="fas fa-chevron-down"></i></a>
+								<a href="patient-dashboard.html">Patient<i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li class="has-submenu">
 										<a href="#">Doctors</a>
@@ -94,7 +94,18 @@
 									<li><a href="profile-settings.html">Profile Settings</a></li>
 									<li><a href="change-password.html">Change Password</a></li>
 								</ul>
-							</li>	
+							</li>
+					<li class="has-submenu">
+								<a href="hospital-settings.html">Hospital <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="hospital-settings.html">Hospital settings</a></li>
+									
+								</ul>
+							
+							</li>
+					<li><a href="pharma_home.html">Pharmacy</a></li>
+					<li><a href="lab_home.html">Laboratory</a></li>
 							<li class="has-submenu">
 								<a href="">Pages <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
@@ -124,13 +135,11 @@
 									<li><a href="blog-details.html">Blog Details</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="admin/index.html" target="_blank">Admin</a>
-							</li>
+							
 							<li class="login-link">
 								<a href="login.html">Login / Signup</a>
 							</li>
-						</ul>	 
+						</ul>		 
 					</div>		 
 					<ul class="nav header-navbar-rht">
 						<li class="nav-item contact-item">
@@ -142,7 +151,6 @@
 								<p class="contact-info-header"> +1 (732) 258-5168</p>
 							</div>
 						</li>
-						
 						<!-- User Menu -->
 						<li class="nav-item dropdown has-arrow logged-item">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -166,7 +174,6 @@
 							</div>
 						</li>
 						<!-- /User Menu -->
-						
 					</ul>
 				</nav>
 			</header>
@@ -208,7 +215,9 @@
 											<h3>Dr. Ashwani Maichand</h3>
 											
 											<div class="patient-details">
-												<h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
+												<h5 class="mb-0">BDS, MDS - Oral &amp; Maxillofacial Surgery</h5>
+												<h6>Doctor ID : DOC0029</h6>
+												<span class="badge badge-pill bg-success">Verified</span>
 											</div>
 										</div>
 									</div>
@@ -222,6 +231,7 @@
 													<span>Dashboard</span>
 												</a>
 											</li>
+<!--
 											<li>
 												<a href="appointments.html">
 													<i class="fas fa-calendar-check"></i>
@@ -234,6 +244,7 @@
 													<span>My Patients</span>
 												</a>
 											</li>
+-->
 											<li>
 												<a href="schedule-timings.html">
 													<i class="fas fa-hourglass-start"></i>
@@ -263,6 +274,12 @@
 												<a href="doctor-profile-settings.html">
 													<i class="fas fa-user-cog"></i>
 													<span>Profile Settings</span>
+												</a>
+											</li>
+											<li>
+												<a href="doctor-bank-settings.html">
+													<i class="fas fa-file-invoice"></i>
+													<span>Bank details</span>
 												</a>
 											</li>
 											<li>
@@ -355,6 +372,9 @@
 									
 										<!-- Appointment Tab -->
 										<ul class="nav nav-tabs nav-tabs-solid nav-tabs-rounded">
+											<li class="nav-item">
+												<a class="nav-link" href="#upcoming-appointments" data-toggle="tab">Past booking</a>
+											</li>
 											<li class="nav-item">
 												<a class="nav-link active" href="#upcoming-appointments" data-toggle="tab">Upcoming</a>
 											</li>

@@ -1,0 +1,11 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+URL:https://www.eventbrite.com/e/conscious-experience-design-webinar-design-for-human-and-machine-tickets-105965646100
+DTSTART:20200603T180000Z
+DTEND:20200603T190000Z
+SUMMARY:Conscious Experience Design Webinar: Design for Human and Machine
+DESCRIPTION:For details, go here:\nhttps://www.eventbrite.com/e/conscious-experience-design-webinar-design-for-human-and-machine-tickets-105965646100
+LOCATION:
+END:VEVENT
+END:VCALENDAR

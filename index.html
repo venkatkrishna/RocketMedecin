@@ -60,7 +60,7 @@
 								<a href="index.html">Home</a>
 							</li>
 							<li class="has-submenu">
-								<a href="">Doctors <i class="fas fa-chevron-down"></i></a>
+								<a href="doctor-dashboard.html">Doctors<i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
 									<li><a href="appointments.html">Appointments</a></li>
@@ -73,9 +73,10 @@
 									<li><a href="reviews.html">Reviews</a></li>
 									<li><a href="doctor-register.html">Doctor Register</a></li>
 								</ul>
+
 							</li>	
 							<li class="has-submenu">
-								<a href="">Patients <i class="fas fa-chevron-down"></i></a>
+								<a href="patient-dashboard.html">Patients <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li class="has-submenu">
 										<a href="#">Doctors</a>
@@ -95,7 +96,38 @@
 									<li><a href="profile-settings.html">Profile Settings</a></li>
 									<li><a href="change-password.html">Change Password</a></li>
 								</ul>
-							</li>	
+							</li>
+					<li class="has-submenu">
+								<a href="hospital_home.html">Hospital <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="hospital-settings.html">Hospital settings</a></li>
+									
+								</ul>
+							
+							</li>
+							<li class="has-submenu">
+								<a href="pharma_home.html">Pharmacy <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="pharmacy-profile-settings.html">Pharmacy settings</a></li>
+									
+								</ul>
+							
+							</li>
+					
+					
+					<li class="has-submenu">
+								<a href="hospital-settings.html">Laboratory <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="lab-profile-settings.html">Laboratory settings</a></li>
+									
+								</ul>
+							
+							</li>		
+							
+							
 							<li class="has-submenu">
 								<a href="">Pages <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
@@ -125,9 +157,7 @@
 									<li><a href="blog-details.html">Blog Details</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="admin/index.html" target="_blank">Admin</a>
-							</li>
+							
 							<li class="login-link">
 								<a href="login.html">Login / Signup</a>
 							</li>
@@ -142,6 +172,12 @@
 								<p class="contact-header">Contact</p>
 								<p class="contact-info-header"> +1 (732) 258-5168</p>
 							</div>
+						</li>
+						<li>
+						
+						<div class="clinic-booking">
+										<a class="apt-btn" href="booking.html">Book Appointment</a>
+									</div>
 						</li>
 						<li class="nav-item">
 							<a class="nav-link header-login" href="login.html">login / Signup </a>
@@ -324,7 +360,32 @@
 			</section>	 
 			<!-- Clinic and Specialities -->
 		  
-			<!-- Popular Section -->
+			
+			<!-- Tab Menu -->
+									<nav class="user-tabs mb-4">
+										<ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+											<li class="nav-item">
+												<a class="nav-link active" href="#book_doc" data-toggle="tab">Book Doctor</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="#hospital" data-toggle="tab">Hospital</a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="#pharmacy" data-toggle="tab"><span class="med-records">Pharmacy</span></a>
+											</li>
+											<li class="nav-item">
+												<a class="nav-link" href="#laboratory" data-toggle="tab">Laboratory</a>
+											</li>
+										</ul>
+									</nav>
+									<!-- /Tab Menu -->
+									<!-- Tab Content -->
+									<div class="tab-content pt-0">	
+										
+										<!-- /Book Doctor -->
+										<div id="book_doc" class="tab-pane fade show active">
+											
+											<!-- Popular Section -->
 			<section class="section section-doctor">
 				<br><br>
 				<div class="container-fluid">
@@ -337,7 +398,7 @@
 							<div class="about-content">
 								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
 								<p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>					
-								<a href="javascript:;">Read More..</a>
+								<a href="doctor_shop_home.html">View all</a>
 							</div>
 						</div>
 						<div class="col-lg-8">
@@ -349,7 +410,7 @@
 										<a href="doctor-profile.html">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-01.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)">
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -397,7 +458,7 @@
 										<a href="doctor-profile.html">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-02.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)">
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -406,7 +467,7 @@
 											<a href="doctor-profile.html">Dr. Ashwani Maichand</a> 
 											<i class="fas fa-check-circle verified"></i>
 										</h3>
-										<p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
+										<p class="speciality">BDS, MDS - Oral &amp; Maxillofacial Surgery</p>
 										<div class="rating">
 											<i class="fas fa-star filled"></i>
 											<i class="fas fa-star filled"></i>
@@ -445,7 +506,7 @@
 										<a href="doctor-profile.html">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-03.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -493,7 +554,7 @@
 										<a href="doctor-profile.html">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-04.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -541,7 +602,7 @@
 										<a href="doctor-profile.html">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-05.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)">
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -589,7 +650,7 @@
 										<a href="doctor-profile.html">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-06.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)">
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -637,7 +698,7 @@
 										<a href="doctor-profile.html">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-07.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)">
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -685,7 +746,7 @@
 										<a href="doctor-profile.html">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-08.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)">
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -733,13 +794,352 @@
 				</div>
 			</section>
 			<!-- /Popular Section -->
-			
-			<!-- Marketplace products Section -->
+		
+
+										</div>
+										<!-- end book octor -->
+										
+										<!-- hospital Tab -->
+										<div class="tab-pane fade" id="hospital">
+											<section class="section section-doctor">
+				<br><br>
+				<div class="container-fluid">
+				   <div class="row">
+					   <div class="col-lg-4">
+							<div class="section-header ">
+								<h2>Book your Hospital</h2>
+								<p>Lorem Ipsum is simply dummy text </p>
+							</div>
+							<div class="about-content">
+								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
+								<p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>					
+								<a href="hospital_shop_home.html">View all</a>
+							</div>
+						</div>
+						
+						<div class="col-lg-8">
+							<h2 style="text-align: center;">Choose your best Hospital</h2>
+						<p style="text-align: center;" >Instant appointment with doctors</p>
+							<div class="doctor-slider slider">
+							
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/hospital/logo_apollo.jpg">
+										</a>
+										<a href="javascript:void(0)">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Apollo Hospital</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+<!--										<p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>-->
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<span class="d-inline-block average-rating">(17)</span>
+										</div>
+										
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="hospital-single_shop.html" class="btn view-btn">View Profile</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+						
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/hospital/logo_columbia.jpg">
+										</a>
+										<a href="javascript:void(0)">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Columbia Asia</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(15)</span>
+										</div>
+										
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="hospital-single_shop.html" class="btn view-btn">View Profile</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+						
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/hospital/logo_fortis.jpg">
+										</a>
+										<a href="javascript:void(0)" >
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Foirtis</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(27)</span>
+										</div>
+										
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="hospital-single_shop.html" class="btn view-btn">View Profile</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+						
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/hospital/logo_aster.jpg">
+										</a>
+										<a href="javascript:void(0)" >
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Aster</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(4)</span>
+										</div>
+										
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+								
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/hospital/logo_hosmat.jpg">
+										</a>
+										<a href="javascript:void(0)">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Hosmat Hospital</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(66)</span>
+										</div>
+										
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+								
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/hospital/logo_manipal.jpg">
+										</a>
+										<a href="javascript:void(0)">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Manipal Hosptial</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(52)</span>
+										</div>
+										
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+								
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/hospital/logo_nh.jpg">
+										</a>
+										<a href="javascript:void(0)">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Narayana Health</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(43)</span>
+										</div>
+										
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- /Doctor Widget -->
+								
+								<!-- Doctor Widget -->
+								<div class="profile-widget">
+									<div class="doc-img">
+										<a href="doctor-profile.html">
+											<img class="img-fluid" alt="User Image" src="assets/img/hospital/logo_vikram.jpg">
+										</a>
+										<a href="javascript:void(0)">
+											<i class="far fa-bookmark"></i>
+										</a>
+									</div>
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="doctor-profile.html">Vikram Hospital</a> 
+											<i class="fas fa-check-circle verified"></i>
+										</h3>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(49)</span>
+										</div>
+										
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
+											</div>
+											
+										</div>
+									</div>
+								</div>
+								<!-- Doctor Widget -->
+								
+							</div>
+						</div>
+				   </div>
+				</div>
+			</section>
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
+										</div>
+										<!-- / hospital Tab -->
+										
+										<!-- Pharmacy Tab -->
+										<div id="pharmacy" class="tab-pane fade">
+											
+											<!-- Marketplace products Section -->
 			<section class="section section-doctor">
 				<br><br>
 				<div class="container-fluid">
 				   <div class="row">
-						<div class="col-lg-12">
+					   <div class="col-lg-4">
+							<div class="section-header ">
+								<h2>Buy your online medicine</h2>
+								<p>Lorem Ipsum is simply dummy text </p>
+							</div>
+							<div class="about-content">
+								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
+								<p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>					
+								<a href="pharma_shop_home.html">View all</a>
+							</div>
+						</div>
+						<div class="col-lg-8">
 							<h2 style="text-align: center;">Medical Products</h2>
 						<p style="text-align: center;" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
 								<!-- Doctor Widget -->
@@ -751,7 +1151,7 @@
 										<a href="#">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/syringes.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -778,10 +1178,10 @@
 										</ul>
 										<div class="row row-sm">
 											<div class="col-6">
-												<a href="#" class="btn view-btn">View</a>
+												<a href="pharmacy-single_shop.html" class="btn view-btn">View</a>
 											</div>
 											<div class="col-6">
-												<a href="#" class="btn book-btn">Book Now</a>
+												<a href="checkout_general.html" class="btn book-btn">Buy Now</a>
 											</div>
 										</div>
 									</div>
@@ -794,7 +1194,7 @@
 										<a href="#">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/stethescope.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -821,10 +1221,10 @@
 										</ul>
 										<div class="row row-sm">
 											<div class="col-6">
-												<a href="#" class="btn view-btn">View</a>
+												<a href="pharmacy-single_shop.html" class="btn view-btn">View</a>
 											</div>
 											<div class="col-6">
-												<a href="#" class="btn book-btn">Book Now</a>
+												<a href="checkout_general.html" class="btn book-btn">Buy Now</a>
 											</div>
 										</div>
 									</div>
@@ -837,7 +1237,7 @@
 										<a href="#">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/medical-gloves.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -867,7 +1267,7 @@
 												<a href="#" class="btn view-btn">View</a>
 											</div>
 											<div class="col-6">
-												<a href="#" class="btn book-btn">Book Now</a>
+												<a href="#" class="btn book-btn">Buy Now</a>
 											</div>
 										</div>
 									</div>
@@ -880,7 +1280,7 @@
 										<a href="#">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/liquid-silicone-rubber.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -910,7 +1310,7 @@
 												<a href="#" class="btn view-btn">View</a>
 											</div>
 											<div class="col-6">
-												<a href="#" class="btn book-btn">Book Now</a>
+												<a href="#" class="btn book-btn">Buy Now</a>
 											</div>
 										</div>
 									</div>
@@ -923,7 +1323,7 @@
 										<a href="#">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/infusion-disposabl.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -953,7 +1353,7 @@
 												<a href="#" class="btn view-btn">View</a>
 											</div>
 											<div class="col-6">
-												<a href="#" class="btn book-btn">Book Now</a>
+												<a href="#" class="btn book-btn">Buy Now</a>
 											</div>
 										</div>
 									</div>
@@ -966,7 +1366,7 @@
 										<a href="#">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/needle.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)">
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -996,7 +1396,7 @@
 												<a href="#" class="btn view-btn">View</a>
 											</div>
 											<div class="col-6">
-												<a href="#" class="btn book-btn">Book Now</a>
+												<a href="#" class="btn book-btn">Buy Now</a>
 											</div>
 										</div>
 									</div>
@@ -1009,7 +1409,7 @@
 										<a href="#">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/thermometer.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -1039,7 +1439,7 @@
 												<a href="#" class="btn view-btn">View</a>
 											</div>
 											<div class="col-6">
-												<a href="#" class="btn book-btn">Book Now</a>
+												<a href="#" class="btn book-btn">Buy Now</a>
 											</div>
 										</div>
 									</div>
@@ -1052,7 +1452,7 @@
 										<a href="#">
 											<img class="img-fluid" alt="User Image" src="assets/img/doctors/blood-pressure.jpg">
 										</a>
-										<a href="javascript:void(0)" class="fav-btn">
+										<a href="javascript:void(0)" >
 											<i class="far fa-bookmark"></i>
 										</a>
 									</div>
@@ -1082,7 +1482,7 @@
 												<a href="#" class="btn view-btn">View</a>
 											</div>
 											<div class="col-6">
-												<a href="#" class="btn book-btn">Book Now</a>
+												<a href="#" class="btn book-btn">Buy Now</a>
 											</div>
 										</div>
 									</div>
@@ -1095,10 +1495,276 @@
 				</div>
 			</section>
 			<!-- /Popular Section -->
+			</div>
+			<!-- / Pharmacy Tab -->
+										
+			<!-- Laboratory Tab -->
+			<div id="laboratory" class="tab-pane fade">
+				<section class="section section-doctor">
+				<br><br>
+				<div class="container-fluid">
+				   <div class="row">
+					   <div class="col-lg-4">
+							<div class="section-header ">
+								<h2>Check your health</h2>
+								<p>Lorem Ipsum is simply dummy text </p>
+							</div>
+							<div class="about-content">
+								<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum.</p>
+								<p>web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes</p>					
+								<a href="lab_shop_home.html">View all</a>
+							</div>
+						</div>
+						<div class="col-lg-8">
+							<h2 style="text-align: center;">Get lab tests</h2>
+						<p style="text-align: center;" >Full body checkups from the comfort of your home.</p>
+							<div class="doctor-slider slider">
+								<div class="profile-widget">
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="#">Lipid Profile</a><i class="fas fa-check-circle verified"></i> </h3>
+											<p class="text-sm">Also known as Lipid Profile Blood</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(35)</span>
+										</div>
+										<ul class="available-info">
+											
+											<li>
+												<i class="far fa-money-bill-alt"></i>&#8377;300 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="lab-single_shop.html" class="btn view-btn">View</a>
+											</div>
+											<div class="col-6">
+												<a href="checkout_general.html" class="btn book-btn">Buy</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="profile-widget">
+									
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="#">LFT Test</a><i class="fas fa-check-circle verified"></i> </h3>
+											<p class="text-sm">Liver Function Tests Blood</p>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(27)</span>
+										</div>
+										<ul class="available-info">
+											
+											<li>
+												<i class="far fa-money-bill-alt"></i>&#8377;400 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="lab-single_shop.html" class="btn view-btn">View</a>
+											</div>
+											
+											<div class="col-6">
+												<a href="checkout_general.html" class="btn book-btn">Buy</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="profile-widget">
+									
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="#">T3 T4 TSH Test</a><i class="fas fa-check-circle verified"></i> </h3>
+											<p class="text-sm">Thyroid Profile Total Blood</p>
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(4)</span>
+										</div>
+										<ul class="available-info">
+											
+											<li>
+												<i class="far fa-money-bill-alt"></i> &#8377;450 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="#" class="btn view-btn">View</a>
+											</div>
+											<div class="col-6">
+												<a href="#" class="btn book-btn">Buy</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="profile-widget">
+									
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="#">Vitamin D</a><i class="fas fa-check-circle verified"></i> </h3>
+											<p class="text-sm">Vitamin D Profile Blood</p>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(66)</span>
+										</div>
+										<ul class="available-info">
+											
+											<li>
+												<i class="far fa-money-bill-alt"></i>&#8377;1000 
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="#" class="btn view-btn">View</a>
+											</div>
+											<div class="col-6">
+												<a href="#" class="btn book-btn">Buy</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								<div class="profile-widget">
+									
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="#">Fasting blood sugar</a><i class="fas fa-check-circle verified"></i> </h3>
+											<p class="text-sm">Known as glucose fasting blood</p>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(52)</span>
+										</div>
+										<ul class="available-info">
+											
+											<li>
+												<i class="far fa-money-bill-alt"></i> &#8377;150
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="#" class="btn view-btn">View</a>
+											</div>
+											<div class="col-6">
+												<a href="#" class="btn book-btn">Buy</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							
+								
+								<div class="profile-widget">
+									
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="#">Pregnancy Test</a><i class="fas fa-check-circle verified"></i> </h3>
+											<p class="text-sm">Beta Hcg automated blood</p>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(43)</span>
+										</div>
+										<ul class="available-info">
+											
+											<li>
+												<i class="far fa-money-bill-alt"></i> &#8377;500
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="#" class="btn view-btn">View</a>
+											</div>
+											<div class="col-6">
+												<a href="#" class="btn book-btn">Buy</a>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="profile-widget">
+									
+									<div class="pro-content">
+										<h3 class="title">
+											<a href="#">Malarial Test</a><i class="fas fa-check-circle verified"></i> </h3>
+											<p class="text-sm">Malarial antigen Pcr blood</p>
+										
+										<div class="rating">
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star filled"></i>
+											<i class="fas fa-star"></i>
+											<span class="d-inline-block average-rating">(49)</span>
+										</div>
+										<ul class="available-info">
+											
+											<li>
+												<i class="far fa-money-bill-alt"></i> &#8377;200
+												<i class="fas fa-info-circle" data-toggle="tooltip" title="Lorem Ipsum"></i>
+											</li>
+										</ul>
+										<div class="row row-sm">
+											<div class="col-6">
+												<a href="#" class="btn view-btn">View</a>
+											</div>
+											<div class="col-6">
+												<a href="#" class="btn book-btn">Buy</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+				   </div>
+				</div>
+			</section>
+										</div>
+										<!-- / Laboratory Tab -->
+									</div>
+						<!-- end Tab Content -->
 			
 			
-			
-		   
 		   <!-- Availabe Features -->
 		   <section class="section section-features">
 				<div class="container-fluid">
@@ -1229,7 +1895,7 @@
 									<ul class="entry-meta meta-item">
 										<li>
 											<div class="post-author">
-												<a href="doctor-profile.html"><img src="assets/img/doctors/doctor-thumb-03.jpg" alt="Post Author"> <span>Dr. <Kamath></Kamath></span></a>
+												<a href="doctor-profile.html"><img src="assets/img/doctors/doctor-thumb-03.jpg" alt="Post Author"> <span>Dr. Kamath</span></a>
 											</div>
 										</li>
 										<li><i class="far fa-clock"></i> 3 Dec 2019</li>

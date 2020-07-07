@@ -62,11 +62,11 @@
 								<a href="index.html">Home</a>
 							</li>
 							<li class="has-submenu active">
-								<a href="">Doctors <i class="fas fa-chevron-down"></i></a>
+								<a href="doctor-dashboard.html">Doctors<i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
 									<li><a href="appointments.html">Appointments</a></li>
-									<li class="active"><a href="schedule-timings.html">Schedule Timing</a></li>
+									<li><a href="schedule-timings.html">Schedule Timing</a></li>
 									<li><a href="my-patients.html">Patients List</a></li>
 									<li><a href="patient-profile.html">Patients Profile</a></li>
 									<li><a href="chat-doctor.html">Chat</a></li>
@@ -75,9 +75,10 @@
 									<li><a href="reviews.html">Reviews</a></li>
 									<li><a href="doctor-register.html">Doctor Register</a></li>
 								</ul>
+
 							</li>	
 							<li class="has-submenu">
-								<a href="">Patients <i class="fas fa-chevron-down"></i></a>
+								<a href="patient-dashboard.html">Patients <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li class="has-submenu">
 										<a href="#">Doctors</a>
@@ -97,7 +98,38 @@
 									<li><a href="profile-settings.html">Profile Settings</a></li>
 									<li><a href="change-password.html">Change Password</a></li>
 								</ul>
-							</li>	
+							</li>
+					<li class="has-submenu">
+								<a href="hospital-settings.html">Hospital <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="hospital-settings.html">Hospital settings</a></li>
+									
+								</ul>
+							
+							</li>
+							<li class="has-submenu">
+								<a href="hospital-settings.html">Pharmacy <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="pharmacy-profile-settings.html">Pharmacy settings</a></li>
+									
+								</ul>
+							
+							</li>
+					
+					
+					<li class="has-submenu">
+								<a href="hospital-settings.html">Laboratory <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="lab-profile-settings.html">Laboratory settings</a></li>
+									
+								</ul>
+							
+							</li>		
+							
+							
 							<li class="has-submenu">
 								<a href="">Pages <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
@@ -127,13 +159,11 @@
 									<li><a href="blog-details.html">Blog Details</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="admin/index.html" target="_blank">Admin</a>
-							</li>
+							
 							<li class="login-link">
 								<a href="login.html">Login / Signup</a>
 							</li>
-						</ul>
+						</ul>	 
 					</div>		 
 					<ul class="nav header-navbar-rht">
 						<li class="nav-item contact-item">
@@ -145,7 +175,6 @@
 								<p class="contact-info-header"> +1 (732) 258-5168</p>
 							</div>
 						</li>
-						
 						<!-- User Menu -->
 						<li class="nav-item dropdown has-arrow logged-item">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -169,7 +198,6 @@
 							</div>
 						</li>
 						<!-- /User Menu -->
-						
 					</ul>
 				</nav>
 			</header>
@@ -211,7 +239,9 @@
 											<h3>Dr. Ashwani Maichand</h3>
 											
 											<div class="patient-details">
-												<h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
+												<h5 class="mb-0">BDS, MDS - Oral &amp; Maxillofacial Surgery</h5>
+												<h6>Doctor ID : DOC0029</h6>
+												<span class="badge badge-pill bg-success">Verified</span>
 											</div>
 										</div>
 									</div>
@@ -225,6 +255,7 @@
 													<span>Dashboard</span>
 												</a>
 											</li>
+<!--
 											<li>
 												<a href="appointments.html">
 													<i class="fas fa-calendar-check"></i>
@@ -237,6 +268,7 @@
 													<span>My Patients</span>
 												</a>
 											</li>
+-->
 											<li class="active">
 												<a href="schedule-timings.html">
 													<i class="fas fa-hourglass-start"></i>
@@ -266,6 +298,12 @@
 												<a href="doctor-profile-settings.html">
 													<i class="fas fa-user-cog"></i>
 													<span>Profile Settings</span>
+												</a>
+											</li>
+											<li>
+												<a href="doctor-bank-settings.html">
+													<i class="fas fa-file-invoice"></i>
+													<span>Bank details</span>
 												</a>
 											</li>
 											<li>
@@ -300,7 +338,185 @@
 								<div class="col-sm-12">
 									<div class="card">
 										<div class="card-body">
-											<h4 class="card-title">Schedule Timings</h4>
+											<h4 class="card-title">Apollo Clinic</h4>
+											<div class="profile-box">
+												<div class="row">
+
+													<div class="col-lg-4">
+														<div class="form-group">               
+															<label>Timing Slot Duration</label>
+															<select class="select form-control">
+																<option>-</option>
+																<option>15 mins</option>
+																<option >30 mins</option>  
+																<option>45 mins</option>
+																<option selected="selected">1 Hour</option>
+															</select>
+														</div>
+													</div>
+
+												</div>     
+												<div class="row">
+													<div class="col-md-12">
+														<div class="card schedule-widget mb-0">
+														
+															<!-- Schedule Header -->
+															<div class="schedule-header">
+															
+																<!-- Schedule Nav -->
+																<div class="schedule-nav">
+																	<ul class="nav nav-tabs nav-justified">
+																		<li class="nav-item">
+																			<a class="nav-link" data-toggle="tab" href="#slot_sunday">Sunday</a>
+																		</li>
+																		<li class="nav-item">
+																			<a class="nav-link " data-toggle="tab" href="#slot_monday">Monday</a>
+																		</li>
+																		<li class="nav-item">
+																			<a class="nav-link" data-toggle="tab" href="#slot_tuesday">Tuesday</a>
+																		</li>
+																		<li class="nav-item">
+																			<a class="nav-link" data-toggle="tab" href="#slot_wednesday">Wednesday</a>
+																		</li>
+																		<li class="nav-item">
+																			<a class="nav-link" data-toggle="tab" href="#slot_thursday">Thursday</a>
+																		</li>
+																		<li class="nav-item">
+																			<a class="nav-link active" data-toggle="tab" href="#slot_friday">Friday</a>
+																		</li>
+																		<li class="nav-item">
+																			<a class="nav-link" data-toggle="tab" href="#slot_saturday">Saturday</a>
+																		</li>
+																	</ul>
+																</div>
+																<!-- /Schedule Nav -->
+																
+															</div>
+															<!-- /Schedule Header -->
+															
+															<!-- Schedule Content -->
+															<div class="tab-content schedule-cont">
+															
+																<!-- Sunday Slot -->
+																<div id="slot_sunday" class="tab-pane fade">
+																	<h4 class="card-title d-flex justify-content-between">
+																		<span>Time Slots</span> 
+																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+																	</h4>
+																	<p class="text-muted mb-0">Not Available</p>
+																</div>
+																<!-- /Sunday Slot -->
+
+																<!-- Monday Slot -->
+																<div id="slot_monday" class="tab-pane fade show active">
+																	<h4 class="card-title d-flex justify-content-between">
+																		<span>Time Slots</span> 
+																		<a class="edit-link" data-toggle="modal" href="#edit_time_slot"><i class="fa fa-edit mr-1"></i>Edit</a>
+																	</h4>
+																	
+																	<!-- Slot List -->
+																	<div class="doc-times">
+																		<div class="doc-slot-list">
+																			8:00 pm - 11:30 pm
+																			<a href="javascript:void(0)" class="delete_schedule">
+																				<i class="fa fa-times"></i>
+																			</a>
+																		</div>
+																		<div class="doc-slot-list">
+																			11:30 pm - 1:30 pm
+																			<a href="javascript:void(0)" class="delete_schedule">
+																				<i class="fa fa-times"></i>
+																			</a>
+																		</div>
+																		<div class="doc-slot-list">
+																			3:00 pm - 5:00 pm
+																			<a href="javascript:void(0)" class="delete_schedule">
+																				<i class="fa fa-times"></i>
+																			</a>
+																		</div>
+																		<div class="doc-slot-list">
+																			6:00 pm - 11:00 pm
+																			<a href="javascript:void(0)" class="delete_schedule">
+																				<i class="fa fa-times"></i>
+																			</a>
+																		</div>
+																	</div>
+																	<!-- /Slot List -->
+																	
+																</div>
+																<!-- /Monday Slot -->
+
+																<!-- Tuesday Slot -->
+																<div id="slot_tuesday" class="tab-pane fade">
+																	<h4 class="card-title d-flex justify-content-between">
+																		<span>Time Slots</span> 
+																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+																	</h4>
+																	<p class="text-muted mb-0">Not Available</p>
+																</div>
+																<!-- /Tuesday Slot -->
+
+																<!-- Wednesday Slot -->
+																<div id="slot_wednesday" class="tab-pane fade">
+																	<h4 class="card-title d-flex justify-content-between">
+																		<span>Time Slots</span> 
+																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+																	</h4>
+																	<p class="text-muted mb-0">Not Available</p>
+																</div>
+																<!-- /Wednesday Slot -->
+
+																<!-- Thursday Slot -->
+																<div id="slot_thursday" class="tab-pane fade">
+																	<h4 class="card-title d-flex justify-content-between">
+																		<span>Time Slots</span> 
+																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+																	</h4>
+																	<p class="text-muted mb-0">Not Available</p>
+																</div>
+																<!-- /Thursday Slot -->
+
+																<!-- Friday Slot -->
+																<div id="slot_friday" class="tab-pane fade">
+																	<h4 class="card-title d-flex justify-content-between">
+																		<span>Time Slots</span> 
+																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+																	</h4>
+																	<p class="text-muted mb-0">Not Available</p>
+																</div>
+																<!-- /Friday Slot -->
+
+																<!-- Saturday Slot -->
+																<div id="slot_saturday" class="tab-pane fade">
+																	<h4 class="card-title d-flex justify-content-between">
+																		<span>Time Slots</span> 
+																		<a class="edit-link" data-toggle="modal" href="#add_time_slot"><i class="fa fa-plus-circle"></i> Add Slot</a>
+																	</h4>
+																	<p class="text-muted mb-0">Not Available</p>
+																</div>
+																<!-- /Saturday Slot -->
+
+															</div>
+															<!-- /Schedule Content -->
+															
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								
+								
+								
+								
+								<div class="col-sm-12">
+									<div class="card">
+										<div class="card-body">
+											<h4 class="card-title">Hosmat Hospital</h4>
 											<div class="profile-box">
 												<div class="row">
 

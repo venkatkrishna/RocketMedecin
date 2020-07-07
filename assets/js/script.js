@@ -57,13 +57,14 @@ Version      : 1.3
 	});
 	
 	// Select 2
-	
+	/*commented as there is a bug in register dropdown
 	if($('.select').length > 0) {
 		$('.select').select2({
 			minimumResultsForSearch: -1,
 			width: '100%'
 		});
 	}
+	*/
 	
 	// Date Time Picker
 	

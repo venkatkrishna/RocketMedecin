@@ -1,0 +1,11 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+URL:https://www.eventbrite.com/e/uiux-online-live-demo-by-amsoft-technologies-social-prachar-tickets-107536297962
+DTSTART:20200606T040000Z
+DTEND:20200606T080000Z
+SUMMARY:UI/UX Online Live Demo by Amsoft Technologies & Social prachar
+DESCRIPTION:For details, go here:\nhttps://www.eventbrite.com/e/uiux-online-live-demo-by-amsoft-technologies-social-prachar-tickets-107536297962\n\nTo access the online event page, go here:\nhttps://www.eventbrite.com/x/uiux-online-live-demo-by-amsoft-technologies-social-prachar-tickets-107536297962
+LOCATION:
+END:VEVENT
+END:VCALENDAR

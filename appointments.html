@@ -76,15 +76,15 @@
 		//console.log("Doctor details;"+ resp1);
 		// convert resp1 from json to key value pair
 		var data = $.parseJSON(resp1);
+	//	alert(JSON.stringify(data));
+	console.log(JSON.stringify(data));
 		
-		console.log(data);
-		
-		  $('#append_list').append('<p>' + data.StaffDetails[0].StaffId + '</p>');
-		     $('#firstname1').append('<p>' + data.StaffDetails[0].Firstname + '</p>');
-			   $('#lastname').append('<p>' + data.StaffDetails[0].Lastname + '</p>');
-			     $('#email_ID').append('<p>' + data.StaffDetails[0].EmailId1 + '</p>');
-				      $('#first_name').append('<p>' + data.StaffDetails[0].Firstname + '</p>');
-					       $('#nav_name').append(  data.StaffDetails[0].Firstname );
+		$('#append_list').append('<p>' + data.DoctorDtls[0].DoctorId + '</p>');
+		     $('#firstname1').append('<p>' + data.DoctorDtls[0].Firstname + '</p>');
+			   $('#lastname').append('<p>' + data.DoctorDtls[0].Lastname + '</p>');
+			     $('#email_ID').append('<p>' + data.DoctorDtls[0].EmailId1 + '</p>');
+				      $('#first_name').append('<p>' + data.DoctorDtls[0].Firstname + '</p>');
+					       $('#nav_name').append(  data.DoctorDtls[0].Firstname );
 				             // $('#image').prepend('<img id="theImg" src="./images/doctor_image.jpg" alt="" class="img-fluid img-thumbnail" />');
 		  
 		  /* for(var i = 0; i < data.length; i++) {

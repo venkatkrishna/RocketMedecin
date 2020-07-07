@@ -2263,6 +2263,48 @@ html.menu-opened body {
     background-blend-mode: Darken;
     padding: 80px 0;
 }
+
+.doc-banner { 
+	background: #f9f9f9 url(../img/doctors/doctor_banner.jpg) no-repeat bottom center;
+    min-height: 450px;
+    background-size: 100% auto;
+    position: relative;
+    background-blend-mode: Darken;
+    padding: 150px 0;
+}
+
+
+.lab-banner { 
+	background: #f9f9f9 url(../img/lab/lab-banner.jpg) no-repeat bottom center;
+    min-height: 450px;
+    background-size: 100% auto;
+    position: relative;
+    background-blend-mode: Darken;
+    padding: 150px 0;
+}
+
+.hos-banner { 
+	background: #f9f9f9 url("../img/hospital/top_banner.jpg") no-repeat bottom center;
+    min-height: 450px;
+    background-size: 100% auto;
+    position: relative;
+    background-blend-mode: Darken;
+    padding: 150px 0;
+	color: #fff;
+}
+
+
+.pharma-banner { 
+	background: #f9f9f9 url("../img/pharmacy/top_banner.jpg") no-repeat bottom center;
+    min-height: 450px;
+    background-size: 100% auto;
+    position: relative;
+    background-blend-mode: Darken;
+    padding: 150px 0;
+}
+
+
+
 .section-header {
     margin-bottom: 60px;
 }
@@ -2524,6 +2566,44 @@ html.menu-opened body {
     -moz-transform: scale(1.15);
     transform: scale(1.15);
 }
+/*
+.profile-widget .fav-btn {
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+	display: -webkit-inline-box;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	justify-content: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+    border-radius: 3px;
+    color: #2E3842;
+    -webkit-transform: translate3d(100%, 0, 0);
+    -ms-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+    visibility: hidden;
+	z-index: 99;
+}
+.profile-widget:hover .fav-btn {
+    opacity: 1;
+    visibility: visible;
+    -webkit-transform: translate3d(0, 0, 0);
+    -ms-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+}
+.profile-widget .fav-btn:hover {
+	background-color: #fb1612;
+	color: #fff;
+}
+*/
 .profile-widget .fav-btn {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
@@ -2704,7 +2784,7 @@ html.menu-opened body {
     transform: scale(1.20);
 }
 .features-slider .slick-list {
-    padding: 16px 50px !important
+    padding: 16px 0px !important
 }
 .features-slider .slick-dots {
     margin-top: 44px;

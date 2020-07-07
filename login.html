@@ -67,7 +67,7 @@
 											<div class="text-right">
 												<a class="forgot-link" href="forgot-password.html">Forgot Password ?</a>
 											</div>
-											<button class="btn btn-primary btn-block btn-lg login-btn" type="submit" onclick="login()">Login</button>
+											<input class="btn btn-primary btn-block btn-lg login-btn" type="submit" value="login" onclick="login()"></input>
 											<div class="login-or">
 												<span class="or-line"></span>
 												<span class="span-or">or</span>
@@ -256,15 +256,18 @@ var uname= document.getElementById("email1").value;
 var pword= document.getElementById("password1").value;
 
 //http://localhost/rocketmed/api/Users?usr=ambujpat@cs.com&pwd=ambuj12
+//http://localhost/rocketmed/api/Users?usr=ambujtst@media.com&pwd=ambuj12
 
 var settings = { 
   "url":"http://localhost/rocketmed/api/Users?usr="+uname+"&pwd="+pword, 
-  "method": "GET", 
-  "timeout": 0, 
+  "method": "GET",
+   
+  "timeout": 3000
 }; 
  
 $.ajax(settings).done(function (response) { 
  console.log(response);
+
  if (response == null)
  {
  document.getElementById("login_failed").innerHTML = "Incorrect Username or Password"; 
@@ -281,9 +284,9 @@ $.ajax(settings).done(function (response) {
   }
   
    else if (response.indexOf("DOC") !== -1) 
-  {
-  var doc_url = './appointments.html?userid='+encodeURIComponent(response);
-  document.location.href = doc_url;
+  { 
+  var doc_url = './doctor-profile-settings.html?userid='+encodeURIComponent(response);
+   document.location.href = doc_url , target="_blank";
   }
   
  
@@ -316,7 +319,7 @@ var settings = {
  "headers": {
  "Content-Type": "application/json"
  },
- "data":JSON.stringify(data),
+ "data":JSON.stringify(data)
 };
 
 $.ajax(settings).done(function (response) {

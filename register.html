@@ -59,7 +59,7 @@
 								<a href="index.html">Home</a>
 							</li>
 							<li class="has-submenu">
-								<a href="">Doctors <i class="fas fa-chevron-down"></i></a>
+								<a href="doctor-dashboard.html">Doctors<i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
 									<li><a href="appointments.html">Appointments</a></li>
@@ -72,9 +72,10 @@
 									<li><a href="reviews.html">Reviews</a></li>
 									<li><a href="doctor-register.html">Doctor Register</a></li>
 								</ul>
+
 							</li>	
 							<li class="has-submenu">
-								<a href="">Patients <i class="fas fa-chevron-down"></i></a>
+								<a href="patient-dashboard.html">Patients <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li class="has-submenu">
 										<a href="#">Doctors</a>
@@ -94,8 +95,39 @@
 									<li><a href="profile-settings.html">Profile Settings</a></li>
 									<li><a href="change-password.html">Change Password</a></li>
 								</ul>
-							</li>	
-							<li class="has-submenu active">
+							</li>
+					<li class="has-submenu">
+								<a href="hospital-settings.html">Hospital <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="hospital-settings.html">Hospital settings</a></li>
+									
+								</ul>
+							
+							</li>
+							<li class="has-submenu">
+								<a href="hospital-settings.html">Pharmacy <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="pharmacy-profile-settings.html">Pharmacy settings</a></li>
+									
+								</ul>
+							
+							</li>
+					
+					
+					<li class="has-submenu">
+								<a href="hospital-settings.html">Laboratory <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="lab-profile-settings.html">Laboratory settings</a></li>
+									
+								</ul>
+							
+							</li>		
+							
+							
+							<li class="has-submenu">
 								<a href="">Pages <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li><a href="voice-call.html">Voice Call</a></li>
@@ -112,7 +144,7 @@
 									</li>
 									<li><a href="blank-page.html">Starter Page</a></li>
 									<li><a href="login.html">Login</a></li>
-									<li class="active"><a href="register.html">Register</a></li>
+									<li><a href="register.html">Register</a></li>
 									<li><a href="forgot-password.html">Forgot Password</a></li>
 								</ul>
 							</li>
@@ -124,9 +156,7 @@
 									<li><a href="blog-details.html">Blog Details</a></li>
 								</ul>
 							</li>
-							<li>
-								<a href="admin/index.html" target="_blank">Admin</a>
-							</li>
+							
 							<li class="login-link">
 								<a href="login.html">Login / Signup</a>
 							</li>
@@ -169,51 +199,60 @@
 										</div>
 										
 										<!-- Register Form -->
-										<form action="doctor-dashboard.html">
+										<form>
+											
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating" id="Firstname">
-												<label class="focus-label">Name</label>
+												<input type="text" class="form-control floating" id="Firstname" required>
+												<label class="focus-label">First name</label>
 											</div>
+											
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating"  id="Email">
+												<input type="text" class="form-control floating" id="Lastname" required>
+												<label class="focus-label">Last name</label>
+											</div>	
+											
+											<div class="form-group form-focus">
+												<input type="email" class="form-control floating"  id="Email" required>
 												<label class="focus-label">Email</label>
 											</div>
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating">
-												<label class="focus-label">Mobile Number</label>
+												<input type="tel" class="form-control floating" id="MobileNum" required>
+												<label class="focus-label">Mobile number</label>
 											</div>
+
 											<div class="form-group form-focus">
-												<input type="text" class="form-control floating" id="Lastname">
-												<label class="focus-label">User name</label>
-											</div>
-											<div class="form-group form-focus">
-												<input type="password" class="form-control floating" id="password1">
-												<label class="focus-label">Create Password</label>
+												<input type="password" class="form-control floating" id="password1" required>
+												<label class="focus-label">Create password</label>
 											</div>
 											
 											<div class="form-group form-focus">
-												<select class="form-control select">
-													<option>Gender</option>
-													<option>Male</option>
-													<option>Female</option>
-												</select>
+												<select class="form-control select" id="gendertype" required>
+													<option value="Male">Gender</option>
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
+												</select> 
 											</div>
 											
 											<div class="form-group form-focus">
-												<select class="form-control select" id="profiletype">
-													<option>Type of User</option>
-													<option value="PAT">I am a Patient</option>
-													<option value="DOC">I am a Doctor</option>
-													<option>I am an Admin in Hospital</option>
-													<option>Others</option>
+												<select class="form-control select" id="profiletype" required>
+													<option value="1">Type of User</option>
+													<option value="2">I am a Patient</option>
+													<option value="1">I am a Doctor</option>
+													<option value="3">I am an Admin in Hospital</option>
+													<option value="4">Others</option>
 												</select>
 											</div>											
-											
+											<div>
+												<span id="register_failed" style="color:red;"></span>
+												</div>
+
 											<div class="text-right">
 												<a class="forgot-link" href="login.html">Already have an account?</a>
 											</div>
-											<input class="btn btn-primary btn-block btn-lg login-btn" type="submit"  onclick="register()">Signup</input>
-											<div class="login-or">
+											
+											<input class="btn btn-primary btn-block btn-lg login-btn" type="submit" value="SignUp" onclick="register()"></input>
+										
+										<div class="login-or">
 												<span class="or-line"></span>
 												<span class="span-or">or</span>
 											</div>
@@ -396,108 +435,89 @@
 		
 <script>
 
-/*
-function login() {
-	
-//alert("login");
-//debugger;
-	
-
-var username= document.getElementById("username").value;
-var password= document.getElementById("password").value;
-//http://localhost/rocketmed/api/Users?usr=ambujpat@cs.com&pwd=ambuj12
-//http://localhost/rocketmed/api/Users?usr=more@check.com&pwd=more
-var settings = { 
-  "url": "http://localhost/rocketmed/api/Users?usr="+username+"&pwd="+password, 
-  "method": "GET", 
-  "timeout": 0, 
-}; 
- 
-$.ajax(settings).done(function (response) { 
-  console.log(response); 
- 
- if (response == null)
- {
- document.getElementById("login_failed").innerHTML = "Login Failed. Incorrect Username or Password"; 
- 
- }
- 
- else if(response.indexOf("PAT") !== -1)
-  {
-    
-  var patient_id = response.slice(3,response.length);
-  url= './user_profile.html?userid='+encodeURIComponent(response);
-  document.location.href = url;
-  //window.open("user_profile.html?userid="+encodeURIComponent(response), "_self");
-  }
-  
-   else if (response.indexOf("DOC") !== -1) 
- 
-  {
-    
-  var DOC_id = response.slice(3,response.length);
-  url= './user_profile.html?userid='+encodeURIComponent(response);
-  document.location.href = url;
-  //window.open("user_profile.html?userid="+encodeURIComponent(response), "_self");
-  
-  }
- 
-}); 
-
-console.log("function login");
-	
-}
-
-*/
-
-
-
 function register()
 {
-
-
-
-var data = {
-
+	
+var gend = document.getElementById("gendertype");
+var strGender = gend.options[gend.selectedIndex].value;
+var utype = document.getElementById("profiletype");
+var strUType = utype.options[utype.selectedIndex].value;
+var data1 = {
             Firstname: $('#Firstname').val(),
             Lastname: $('#Lastname').val(),
-			UserType : $('#profiletype :selected').val(),
-	        email: $('#Email').val(),
-			password: $('#password1').val()
-			
+			email: $('#Email').val(),
+			MobileNumber : $('#MobileNum').val(),
+			Password: $('#password1').val(),
+			Gender: strGender,
+			UserType : strUType,
 	       };
 		   
-console.log(data);  
+console.log(JSON.stringify(data1));  
+/*{"Firstname":"kumar","Lastname":"ambuj","UserType":"PAT","email":"ambujpat@cs007.com","password":"ambuj12"}*/
+/* {"Firstname":"ABCd",
+"Lastname":"dDEF",
+"email":"abcd@gmail.com",
+"MobileNumber":"9876543218",
+"Password":"abcd",
+"Gender":"Male",
+UserType":"1"} */
 
 
-		   /*{"Firstname":"kumar","Lastname":"ambuj","UserType":"PAT","email":"ambujpat@cs007.com","password":"ambuj12"}*/
+const data = {
+            Firstname: $('#Firstname').val(),
+            Lastname: $('#Lastname').val(),
+			email: $('#Email').val(),
+			MobileNumber : $('#MobileNum').val(),
+			Password: $('#password1').val(),
+			Gender: strGender,
+			UserType : strUType,
+	       };
 
-var settings = {
- "url": "http://localhost/rocketmed/api/Users",
- "method": "POST",
- "timeout": 0,
- "headers": {
- "Content-Type": "application/json"
- },
- "data":JSON.stringify(data),
-};
+$.ajax({
+    url: "http://localhost/rocketmed/api/Users",
+	method:"POST",
+	async: false,
+	contentType: 'application/json; charset=utf-8',
+    data:JSON.stringify(data1),
+	timeout: 36000, 
+	error: function(){
+		alert("Error: Mail ID/ Phone No. Already Registerd. Pease Try Again");
+		if (response == null)
+			{
+			document.getElementById("register_failed").innerHTML = "Registration Failed. Pease Try Again"; 
+			}
+			else if (responseR.status == "400")
+			{
+				document.getElementById("register_failed").innerHTML = "Mail ID/ Phone No. Already Registerd. Pease Try Again"; 
+			}
+    },
+    success: function(response){
+			console.log(response);
+			console.log("Your ID : "+response);
+			alert('Record created Successfully. Your ID : '+response);
+			//window.open("./login.html", "_self");
+			//document.getElementById("register_failed").innerHTML = "Record Created Successfully.Please Login."; 
+			
+			/*Redirect to login page 
+			//alert(document.location.href);
+			var baseURL = location.href; 
+			if(baseURL.endsWith("?"))
+			{var resss = baseURL.split("?");
+			baseURL = resss[0];}
+			//alert(baseURL);
+			window.open(baseURL+'/../login.html', "_self");
+			*/
+			
+			//Redirect to Profile settings page with DOC ID
+			if (response.indexOf("DOC") !== -1) 
+  				{ 
+					  alert('inside');
+   				window.open('doctor-profile-settings.html?userid='+encodeURIComponent(response));
+  				}
 
-$.ajax(settings).done(function (response) {
-if(response == null)
-{
-alert("Error: Please try again");
- console.log(response);
- }
- else
- {
- alert("Record created succesfully");
- console.log(response);
- }
+			//document.location.href = "./login.html" , target="_blank";
+			}
 });
-
-
-
-
 }
 
 </script>
