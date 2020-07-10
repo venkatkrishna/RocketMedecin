@@ -26,6 +26,10 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="assets/css/style.css">
 		
+		
+		<!-- wizard CSS -->
+		<link rel="stylesheet" href="assets/css/wizard.css">
+		
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!--[if lt IE 9]>
 			<script src="assets/js/html5shiv.min.js"></script>
@@ -227,6 +231,13 @@
 										<a href="#" class="booking-doc-img">
 											<img src="assets/img/hospital/hospital-thumb-02.jpg" alt="User Image">
 										</a>
+										<div class="upload-img">
+														<div class="change-photo-btn">
+															<span><i class="fa fa-upload"></i> Upload Photo</span>
+															<input type="file" class="upload">
+														</div>
+														<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+													</div><br>
 										<div class="profile-det-info">
 											<h3>AP Hospital</h3>
 											
@@ -327,30 +338,39 @@
 							<!-- /Profile Sidebar -->
 							
 						</div>
-						<div class="col-md-7 col-lg-8 col-xl-9">
 						
+						
+						
+						<div class="col-md-12 col-xl-9">
 							<!-- Basic Information -->
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">Hospital Information</h4>
-									<div class="row form-row">
-										<div class="col-md-12">
-											<div class="form-group">
-												<div class="change-avatar">
-													<div class="profile-img">
-														<img src="assets/img/hospital/hospital-thumb-02.jpg" alt="User Image">
-													</div>
-													<div class="upload-img">
-														<div class="change-photo-btn">
-															<span><i class="fa fa-upload"></i> Upload Photo</span>
-															<input type="file" class="upload">
-														</div>
-														<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-md-6">
+									
+									
+									
+									
+									
+									
+									
+      <div class="multisteps-form">
+        <div class="row">
+          <div class="col-12  ml-auto mr-auto mb-4">
+            <div class="multisteps-form__progress">
+              <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">Hospital Info</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Contact details">Specialization</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Clinic Info">Confirm</button>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+  <div class="col-12 m-auto">
+            <form class="multisteps-form__form">
+              <div class="multisteps-form__panel rounded bg-white js-active" data-animation="scaleIn">
+<!--                <h3 class="multisteps-form__title">User Info</h3><br>-->
+                <div class="multisteps-form__content">
+				
+					<div class="row form-row">
+                 <div class="col-md-6">
 											<div class="form-group">
 												<label>Select type<span class="text-danger">*</span></label>
 												<select class="form-control select">
@@ -367,26 +387,25 @@
 												<input type="text" class="form-control">
 											</div>
 										</div>
-									
-										
-									</div>
-								</div>
-							</div>
-							
-							<!-- Contact Details -->
-							<div class="card contact-card">
-								<div class="card-body">
-									<h4 class="card-title">Contact Details</h4>
-									<div class="row form-row">
-										<div class="col-md-6">
+						
+						
+						
+						<div class="col-md-4">
 											<div class="form-group">
 												<label>Address Line 1</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<div class="form-group">
 												<label class="control-label">Address Line 2</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+						
+						<div class="col-md-4">
+											<div class="form-group">
+												<label class="control-label">Address Line 3</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
@@ -424,100 +443,87 @@
 												</select>
 											</div>
 										</div>
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<div class="form-group">
 												<label class="control-label">Postal Code</label>
 												<input type="text" class="form-control">
 											</div>
 										</div>
 										
-										<div class="col-md-6">
+										<div class="col-md-8">
 											<div class="form-group" >
 												<label>Web URL</label>
 												<input type="text" class="form-control" placeholder="www.example.com">
 											</div>
 										</div>
-										
-									</div>
-								</div>
-							</div>
-							<!-- /Contact Details -->
-							
-							
-							
-							
-							<div class="card contact-card">
-								<div class="card-body">
-									
-									<div class="row form-row">
-										
-										
-										<div class="col-md-6">
+						
+						<div class="col-md-4">
 											<div class="form-group">
 												<label>Email <span class="text-danger">*</span></label>
 												<input type="email" class="form-control">
 											</div>
 										</div>
 										
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<div class="form-group" >
 												<label>Phone</label>
 												<input type="text" class="form-control" placeholder="eg: 080 66666666">
 											</div>
 										</div>
 										
-										<div class="col-md-6">
+										<div class="col-md-4">
 											<div class="form-group">
 												<label>Fax </label>
 												<input type="email" class="form-control">
 											</div>
 										</div>
-									</div>
 									<div class="add-more">
 										<a href="javascript:void(0);" class="add-education"><i class="fa fa-plus-circle"></i> Add More</a>
 									</div>
-								</div>
-							</div>
+
+                  
+                </div>
+					<div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                  </div>
+              </div>
+				  </div>
+				
+
+              <div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+<!--                <h3 class="multisteps-form__title" style="padding:15px;">Hospital info</h3>-->
+                <div class="multisteps-form__content">
+				
+					<div class="form-row" style="padding:15px;">
+					
+						<div class="col-12">
 							
-							
-							
-							
-							
-							<!-- /Basic Information -->
-							
-							<!-- Services and Specialization -->
-							<div class="card services-card">
-								<div class="card-body">
-									<h4 class="card-title">Services and Specialization</h4>
+							<h4 class="card-title">Services and specialization</h4>
 									<div class="form-group">
-										<label>Services</label>
+									  <label>Services</label>
 										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Enter Services" name="services" value="Tooth cleaning " id="services">
-										<small class="form-text text-muted">Note : Type & Press enter to add new services</small>
+										<small class="form-text text-muted">Note : Type &amp; Press enter to add new services</small>
 									</div> 
 									<div class="form-group mb-0">
 										<label>Specialization </label>
 										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Enter Specialization" name="specialist" value="Children Care,Dental Care" id="specialist">
-										<small class="form-text text-muted">Note : Type & Press  enter to add new specialization</small>
+										<small class="form-text text-muted">Note : Type &amp; Press  enter to add new specialization</small>
 									</div> 
-								</div>              
-							</div>
-							<!-- /Services and Specialization -->
-							
-							<!-- About Me -->
-							<div class="card">
-								<div class="card-body">
+						</div>
+						
+						<!-- About Me -->
+							<div class="col-12"><br><br>
 									<h4 class="card-title">About Hospital</h4>
 									<div class="form-group mb-0">
 										<textarea class="form-control" rows="5"></textarea>
 									</div>
-								</div>
-							</div>
-							<!-- /About Me -->
-							
-							<!-- Clinic Info -->
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">Hospital photos</h4>
+						</div>
+						
+						
+						<div class="col-12">
+						<br><br>
+						<h4 class="card-title">Hospital photos</h4>
+							<form action="#" class="dropzone"></form>
 									<div class="row form-row">
 										
 										<div class="col-md-12">
@@ -537,22 +543,32 @@
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
-							<!-- /Clinic Info -->
-
-							
-							
-							
-							
-							
-						 
-							
-							<!-- Awards -->
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">Awards</h4>
-									<div class="awards-info">
+						</div>
+						
+						
+							<!-- /About Me -->
+						
+				  </div>
+					<div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                  </div>
+					
+				</div>
+              </div>
+				
+				
+				
+				
+				
+				
+				
+				<div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+<!--                <h3 class="multisteps-form__title" style="padding:15px;">Confirm</h3>-->
+                <div class="multisteps-form__content">
+					
+					<h4 class="card-title" style="padding-left:15px; padding-right:15px">Awards</h4>
+									<div class="awards-info" style="padding-left:15px; padding-right:15px">
 										<div class="row form-row awards-cont">
 											<div class="col-12 col-md-5">
 												<div class="form-group">
@@ -568,17 +584,14 @@
 											</div>
 										</div>
 									</div>
-									<div class="add-more">
+									<div class="add-more" style="padding-left: 15px;">
 										<a href="javascript:void(0);" class="add-award"><i class="fa fa-plus-circle"></i> Add More</a>
 									</div>
-								</div>
-							</div>
-							<!-- /Awards -->
-							
-							
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">Government IDs</h4>
+					
+					
+					<div class="col-12">
+					<br><br>
+					<h4 class="card-title">Government IDs</h4>
 									<div class="awards-info">
 										<div class="row form-row awards-cont">
 											
@@ -614,21 +627,15 @@
 									<div class="add-more">
 										<a href="javascript:void(0);" class="add-award"><i class="fa fa-plus-circle"></i> Add More</a>
 									</div>
-								</div>
-							</div>
-							
-							<!-- Clinic Info -->
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">Upload Government ID photos</h4>
-									<div class="row form-row">
-										
-										<div class="col-md-12">
-											<div class="form-group">
-												
+					
+					</div>
+									
+											<div class="form-group" style="padding-left:15px; padding-right:15px"><br><br>
+												<label>Upload Government ID photos</label>
 												<form action="#" class="dropzone"></form>
 											</div>
-											<div class="upload-wrap">
+
+											<div class="upload-wrap" style="padding-left:15px;">
 												<div class="upload-images">
 													<img src="assets/img/features/feature-01.jpg" alt="Upload Image">
 													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
@@ -637,18 +644,15 @@
 													<img src="assets/img/features/feature-02.jpg" alt="Upload Image">
 													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
 												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /Clinic Info -->
-							
-							
-							<!-- Registrations -->
-							<div class="card">
-								<div class="card-body">
-									<h4 class="card-title">Registrations</h4>
+											</div><br><br>
+
+						
+					
+					
+					
+					
+									<div class="experience-info" style="padding-left:15px; padding-right:15px">
+										<h4 class="card-title">Registrations</h4>
 									<div class="registrations-info">
 										<div class="row form-row reg-cont">
 											<div class="col-12 col-md-5">
@@ -668,15 +672,144 @@
 									<div class="add-more">
 										<a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Add More</a>
 									</div>
+										
+										
+									</div>
+									
+					
+					
+					<br><br>
+					
+					
+					
+					
+					
+					
+                  <div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                     <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                  </div>
+                </div>
+              </div>
+
+				
+				
+				
+				
+				
+				
+              <div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+                <h3 class="multisteps-form__title" style="padding-left:15px; padding-right:15px">Confirm</h3><br>
+                <div class="multisteps-form__content" style="padding-left:15px; padding-right:15px">
+                  
+									<div class="membership-info">
+										<div class="row form-row membership-cont">
+											<div class="col-12 col-md-10 col-lg-5">
+												<div class="form-group">
+													<label>Memberships</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-membership"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+					
+					<br><br>
+					<h4 class="card-title">Practice registration details&nbsp;</h4>
+									<div class="registrations-info">
+										<div class="row form-row reg-cont">
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Registration no.</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Year</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div><br><br>
+					
+					
+					
+											<div class="form-group">
+												<label>Upload Files</label>
+												<form action="#" class="dropzone"></form>
+											</div>
+											<div class="upload-wrap">
+												<div class="upload-images">
+													<img src="assets/img/features/feature-01.jpg" alt="Upload Image">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+												<div class="upload-images">
+													<img src="assets/img/features/feature-02.jpg" alt="Upload Image">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+											</div>
+						
+					
+                  <div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                    <button class="btn btn-success ml-auto" type="button" title="Send">Submit</button>
+                  </div>
+                </div>
+              </div>
+				
+				
+            </form>
+			</div>
+        </div>
+      </div>
+									
+									
+									
+									
+									
+									
+									
+									
+						
+									
+									
+									
+      				
+									
 								</div>
-							</div>
-							<!-- /Registrations -->
-							
-							<div class="submit-section submit-btn-bottom">
-								<button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
-							</div>
-							
-						</div>
+							</div>	
+</div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 					</div>
 
 				</div>
@@ -851,6 +984,9 @@
 		
 		<!-- Custom JS -->
 		<script src="assets/js/script.js"></script>
+		
+		<!-- Wizard JS -->
+		<script src="assets/js/wizard.js"></script>
 		
 	</body>
 </html>
