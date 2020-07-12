@@ -1,0 +1,1496 @@
+<!DOCTYPE html> 
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Rocket Medecin</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+		
+		<!-- Favicons -->
+		<link href="assets/img/favicon.png" rel="icon">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+		
+		<!-- Datetimepicker CSS -->
+		<link rel="stylesheet" href="assets/css/bootstrap-datetimepicker.min.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+		
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
+		
+		<link rel="stylesheet" href="assets/plugins/dropzone/dropzone.min.css">
+		
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="assets/css/style.css">
+		
+		<!-- wizard CSS -->
+		<link rel="stylesheet" href="assets/css/wizard.css">
+		
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+		
+		
+<!--
+		 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+-->
+
+       <style>
+
+          .borderx
+              {
+				  border: solid 1px green;
+			  }
+ 
+
+	   </style>
+
+		<script>
+			var docIDGlobal;
+			var firstname ,lastname ,  emailid , mobileid ;
+			window.onload = function () {
+			var url = document.location.href,
+				params = url.split('?')[1].split('&'),
+				data = {}, tmp;
+			for (var i = 0, l = params.length; i < l; i++) {
+				 tmp = params[i].split('=');
+				 data[tmp[0]] = tmp[1];
+			}
+			
+			//alert(data.userid);
+			var user_ID = data.userid;
+			
+			if (user_ID.indexOf("PAT") !== -1)
+			{
+			  var patient_id = user_ID.slice(3,user_ID.length);
+			  var settings2 = {
+				 "url": "http://localhost/rocketmed/api/Patient/"+patient_id,
+				 "method": "GET",
+				 "timeout": 0,
+				};
+				$.ajax(settings2).done(function (response2) {
+					//console.log("patient details ;"+ response2);
+					
+				var data = $.parseJSON(response2);
+							
+				$('#append_list').append('<p>' + data.PatientDtls[0].PatientId + '</p>');
+					 $('#firstname1').append('<p>' + data.PatientDtls[0].Firstname + '</p>');
+					   $('#lastname').append('<p>' + data.PatientDtls[0].Lastname + '</p>');
+						 $('#email_ID').append('<p>' + data.PatientDtls[0].EmailId1 + '</p>');
+							  $('#first_name').append('<p>' + data.PatientDtls[0].Firstname + '</p>');
+								   $('#nav_name').append(  data.PatientDtls[0].Firstname );
+									$('#image').prepend('<img id="theImg" src="./images/patient_image.png" alt="" class="img-fluid img-thumbnail" />');
+				});
+			}
+			
+			else if (user_ID.indexOf("DOC") !== -1)
+			{
+			 var DOC_id = user_ID.slice(3,user_ID.length);
+			 docIDGlobal = DOC_id;
+			 var setting1 = {
+			 "url": "http://localhost/rocketmed/api/Doctor/"+DOC_id,
+			 "method": "GET",
+			 "timeout": 0,
+			 };
+			 
+			$.ajax(setting1).done(function (resp1) {
+				//sleep(10);
+				//console.log(resp1);
+				//console.log("Doctor details;"+ resp1);
+				// convert resp1 from json to key value pair
+				var data = $.parseJSON(resp1);
+			//	alert(JSON.stringify(data));
+			console.log(JSON.stringify(data));
+			
+			$('#append_list').append('<p>' + data.DoctorDtls[0].DoctorId + '</p>');
+					 $('#firstname1').append('<p>' + data.DoctorDtls[0].Firstname + '</p>');
+					   $('#lastname').append('<p>' + data.DoctorDtls[0].Lastname + '</p>');
+						 $('#email_ID').append('<p>' + data.DoctorDtls[0].EmailId1 + '</p>');
+							//  $('#first_name').append('<p>' + data.DoctorDtls[0].Firstname + '</p>');
+							// $('#image').prepend('<img id="theImg" src="./images/doctor_image.jpg" alt="" class="img-fluid img-thumbnail" />');
+									 firstname =  data.DoctorDtls[0].Firstname ;
+									  lastname = data.DoctorDtls[0].Lastname ;
+									  emailid = data.DoctorDtls[0].EmailId1;
+									 mobileid = data.DoctorDtls[0].Mobile1 ;
+								
+									$("#firstname_placeholder").attr("placeholder", firstname);
+									$("#lastname_placeholder").attr("placeholder", lastname);
+									$("#emailid_placeholder").attr("placeholder", emailid );
+									$("#mobileNumm").attr("placeholder", mobileid );
+
+				  /* for(var i = 0; i < data.length; i++) {
+						 //console.log(data);
+						   var listing=data[i];
+							//console.log(listing);
+							$('#append_list').append('<p>' + data.StaffDetails[0].StaffId + '</p>');
+							
+						}*/
+				
+				//document.getElementById('first_name').innerHTML= "Hemanth, ";
+			//	document.getElementById('last_name').innerHTML= " More, ";
+				// document.getElementById('staff_number').innerHTML= " 1023 , ";
+				// document.getElementById('email_ID').innerHTML=  " more@check.com , ";
+				
+			});
+			}
+			
+			}
+			
+			</script>	
+
+	
+	</head>
+	<body>
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+		
+		<!-- Header -->
+			<header class="header">
+				<nav class="navbar navbar-expand-lg header-nav">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</a>
+						<a href="index.html" class="navbar-brand logo">
+							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+						</a>
+					</div>
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="index.html" class="menu-logo">
+								<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+							</a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
+						</div>
+						<ul class="main-nav">
+							<li>
+								<a href="index.html">Home</a>
+							</li>
+							<li class="has-submenu active">
+								<a href="doctor_home.html">Doctors<i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
+									<li><a href="appointments.html">Appointments</a></li>
+									<li><a href="schedule-timings.html">Schedule Timing</a></li>
+									<li><a href="my-patients.html">Patients List</a></li>
+									<li><a href="patient-profile.html">Patients Profile</a></li>
+									<li><a href="chat-doctor.html">Chat</a></li>
+									<li><a href="invoices.html">Invoices</a></li>
+									<li><a href="doctor-profile-settings.html">Profile Settings</a></li>
+									<li><a href="reviews.html">Reviews</a></li>
+									<li><a href="doctor-register.html">Doctor Register</a></li>
+								</ul>
+							</li>	
+							<li class="has-submenu">
+								<a href="patient-dashboard.html">Patient<i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li class="has-submenu">
+										<a href="#">Doctors</a>
+										<ul class="submenu">
+											<li><a href="map-grid.html">Map Grid</a></li>
+											<li><a href="map-list.html">Map List</a></li>
+										</ul>
+									</li>
+									<li><a href="search.html">Search Doctor</a></li>
+									<li><a href="doctor-profile.html">Doctor Profile</a></li>
+									<li><a href="booking.html">Booking</a></li>
+									<li><a href="checkout.html">Checkout</a></li>
+									<li><a href="booking-success.html">Booking Success</a></li>
+									<li><a href="patient-dashboard.html">Patient Dashboard</a></li>
+									<li><a href="favourites.html">Favourites</a></li>
+									<li><a href="chat.html">Chat</a></li>
+									<li><a href="profile-settings.html">Profile Settings</a></li>
+									<li><a href="change-password.html">Change Password</a></li>
+								</ul>
+							</li>
+					<li class="has-submenu">
+								<a href="hospital-settings.html">Hospital <i class="fas fa-chevron-down"></i></a>
+						
+							<ul class="submenu">
+									<li><a href="hospital-settings.html">Hospital settings</a></li>
+									
+								</ul>
+							
+							</li>
+					<li><a href="pharma_home.html">Pharmacy</a></li>
+					<li><a href="lab_home.html">Laboratory</a></li>
+							<li class="has-submenu">
+								<a href="">Pages <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="voice-call.html">Voice Call</a></li>
+									<li><a href="video-call.html">Video Call</a></li>
+									<li><a href="search.html">Search Doctors</a></li>
+									<li><a href="calendar.html">Calendar</a></li>
+									<li><a href="components.html">Components</a></li>
+									<li class="has-submenu">
+										<a href="invoices.html">Invoices</a>
+										<ul class="submenu">
+											<li><a href="invoices.html">Invoices</a></li>
+											<li><a href="invoice-view.html">Invoice View</a></li>
+										</ul>
+									</li>
+									<li><a href="blank-page.html">Starter Page</a></li>
+									<li><a href="login.html">Login</a></li>
+									<li><a href="register.html">Register</a></li>
+									<li><a href="forgot-password.html">Forgot Password</a></li>
+								</ul>
+							</li>
+							<li class="has-submenu">
+								<a href="">Blog <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="blog-list.html">Blog List</a></li>
+									<li><a href="blog-grid.html">Blog Grid</a></li>
+									<li><a href="blog-details.html">Blog Details</a></li>
+								</ul>
+							</li>
+							
+							<li class="login-link">
+								<a href="login.html">Login / Signup</a>
+							</li>
+						</ul>	 
+					</div>		 
+					<ul class="nav header-navbar-rht">
+						<li class="nav-item contact-item">
+							<div class="header-contact-img">
+								<i class="far fa-hospital"></i>							
+							</div>
+							<div class="header-contact-detail">
+								<p class="contact-header">Contact</p>
+								<p class="contact-info-header"> +1 (732) 258-5168</p>
+							</div>
+						</li>
+						<!-- User Menu -->
+						<li class="nav-item dropdown has-arrow logged-item">
+							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+								<span class="user-img">
+									<img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31" alt="Darren Elder">
+								</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<div class="user-header">
+									<div class="avatar avatar-sm">
+										<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image" class="avatar-img rounded-circle">
+									</div>
+									<div class="user-text">
+										<h6>Darren Elder</h6>
+										<p class="text-muted mb-0">Doctor</p>
+									</div>
+								</div>
+								<a class="dropdown-item" href="doctor-dashboard.html">Dashboard</a>
+								<a class="dropdown-item" href="doctor-profile-settings.html">Profile Settings</a>
+								<a class="dropdown-item" href="login.html">Logout</a>
+							</div>
+						</li>
+						<!-- /User Menu -->
+					</ul>
+				</nav>
+			</header>
+			<!-- /Header -->
+			
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar">
+				<div class="container-fluid">
+					<div class="row align-items-center">
+						<div class="col-md-12 col-12">
+							<nav aria-label="breadcrumb" class="page-breadcrumb">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Profile Settings</li>
+								</ol>
+							</nav>
+							<h2 class="breadcrumb-title">Profile Settings</h2>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+			
+			<!-- Page Content -->
+			<div class="content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+						
+							<!-- Profile Sidebar -->
+							<div class="profile-sidebar">
+								<div class="widget-profile pro-widget-content">
+									<div class="profile-info-widget">
+										<a href="#" class="booking-doc-img">
+											<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+										</a>
+										<div class="upload-img">
+														<div class="change-photo-btn">
+															<span><i class="fa fa-upload"></i> Upload Photo</span>
+															<input type="file" class="upload">
+														</div>
+														<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max size of 2MB</small>
+													</div><br>
+										<div class="profile-det-info">
+											<h3 style="display:flex;justify-content: center;" >  DR : &nbsp; <span id="firstname1" > </span> </h3>
+											
+											<div class="patient-details">
+												<h5 class="mb-0"><span id="designate" > </span></h5>
+												<h6 style="display:flex;justify-content: center;" >Doctor ID : &nbsp; <span id="append_list" > </span></h6>
+												<span class="badge badge-pill bg-success">Verified</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="dashboard-widget">
+									<nav class="dashboard-menu">
+										<ul>
+											<li>
+												<a href="doctor-dashboard.html">
+													<i class="fas fa-columns"></i>
+													<span>Dashboard</span>
+												</a>
+											</li>
+<!--
+											<li>
+												<a href="appointments.html">
+													<i class="fas fa-calendar-check"></i>
+													<span>Appointments</span>
+												</a>
+											</li>
+											<li>
+												<a href="my-patients.html">
+													<i class="fas fa-user-injured"></i>
+													<span>My Patients</span>
+												</a>
+											</li>
+-->
+											<li>
+												<a href="schedule-timings.html">
+													<i class="fas fa-hourglass-start"></i>
+													<span>Schedule Timings</span>
+												</a>
+											</li>
+											<li>
+												<a href="invoices.html">
+													<i class="fas fa-file-invoice"></i>
+													<span>Invoices</span>
+												</a>
+											</li>
+											<li>
+												<a href="reviews.html">
+													<i class="fas fa-star"></i>
+													<span>Reviews</span>
+												</a>
+											</li>
+											<li>
+												<a href="chat-doctor.html">
+													<i class="fas fa-comments"></i>
+													<span>Message</span>
+													<small class="unread-msg">23</small>
+												</a>
+											</li>
+											<li class="active">
+												<a href="doctor-profile-settings.html">
+													<i class="fas fa-user-cog"></i>
+													<span>Profile Settings</span>
+												</a>
+											</li>
+											<li>
+												<a href="doctor-bank-settings.html">
+													<i class="fas fa-file-invoice"></i>
+													<span>Bank details</span>
+												</a>
+											</li>
+											<li>
+												<a href="social-media.html">
+													<i class="fas fa-share-alt"></i>
+													<span>Social Media</span>
+												</a>
+											</li>
+											<li>
+												<a href="doctor-change-password.html">
+													<i class="fas fa-lock"></i>
+													<span>Change Password</span>
+												</a>
+											</li>
+											<li>
+												<a href="index.html">
+													<i class="fas fa-sign-out-alt"></i>
+													<span>Logout</span>
+												</a>
+											</li>
+										</ul>
+									</nav>
+								</div>
+							</div>
+							<!-- /Profile Sidebar -->
+						</div>
+						<div class="col-md-12 col-xl-9">
+							<!-- Basic Information -->
+							<div class="card">
+								<div class="card-body">
+									
+									
+									
+									
+									
+									
+									
+      <div class="multisteps-form">
+        <div class="row">
+          <div class="col-12  ml-auto mr-auto mb-4">
+            <div class="multisteps-form__progress">
+              <button class="multisteps-form__progress-btn js-active" type="button" title="User Info">User Info</button>
+              <!-- <button class="multisteps-form__progress-btn" type="button" title="Contact details">Contact details</button> -->
+              <button class="multisteps-form__progress-btn" type="button" title="Clinic Info">Clinic info</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Experience">Experience</button>
+              <button class="multisteps-form__progress-btn" type="button" title="Confirm">Confirm </button>
+            </div>
+          </div>
+		</div>
+		
+        <div class="row">
+  <div class="col-12 m-auto">
+            <form class="multisteps-form__form">
+              <div class="multisteps-form__panel rounded bg-white js-active" data-animation="scaleIn">
+                <h3 class="multisteps-form__title">User Info</h3><br>
+                <div class="multisteps-form__content">
+				
+					<div class="row form-row">
+                  <div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>First name <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" id="firstname_placeholder" class="firstname" required >
+											</div>
+										</div>
+
+                  <div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Last name <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" id="lastname_placeholder" class="lastname" required> 
+											</div>
+										</div>
+
+                  <div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Email <span class="text-danger">*</span></label>
+												<input type="email" class="form-control" id="emailid_placeholder" class="email" required>
+											</div>
+										</div>
+					
+					<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Desired designation <span class="text-danger" >*</span></label>
+												<input type="text" class="form-control" class="desired_designation" id="designa" onchange="designation()" required >
+											</div>
+										</div>
+
+					<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Mobile number <span class="text-danger">*</span></label>
+												<input type="text" class="form-control" class="mobile" id="mobileNumm" required>
+											</div>
+										</div>
+					
+					<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Gender</label>
+												<select class="form-control select" id="gendertype">
+													
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
+												</select>
+											</div>
+										</div>
+					
+					<div class="col-12 col-md-4">
+												<div class="form-group">
+													<label>Date of birth</label>
+													<div class="cal-icon">
+														<input type="text" class="form-control datetimepicker"  id="dob" required>
+													</div>
+												</div>
+											</div>
+					
+					<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Profile handled by</label>
+												<select class="form-control select" id="profilehandledby" required>
+													<option value="1">Self</option>
+													<option value="2">Delegates</option>
+												</select>
+											</div>
+										</div>
+					
+					
+                  
+				</div>
+				
+					<!-- <div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                  </div>
+              </div>
+				  </div>
+				
+				
+				              <div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+                <h3 class="multisteps-form__title">Contact details</h3><br>
+                <div class="multisteps-form__content"> -->
+					<div class="registrations-info">
+							<div class="reg-cont">
+											<div class="row form-row">
+										<div class="col-12 col-md-6">
+											<div class="form-group">
+												<label>ID proof name</label>
+												<select class="form-control select" id="proofname" required>
+													<option value="1">Aadhar</option>
+													<option value="2">SSN</option>
+													<option value="3">Passport</option>
+												</select>
+											</div>
+										</div>
+					
+                  							<div class="col-12 col-md-6">
+												<div class="form-group">
+													<label>ID proof number</label>
+													<input type="text" class="form-control" id="proofno" required>
+												</div> 
+											</div>
+											</div>
+								
+		
+				
+                  						<div class="col-md-12">
+											<form action="#" class="dropzone"></form>
+											<div class="form-group">
+												<label>Upload documents</label>
+												<form action="#" class="dropzone"></form>
+											</div>
+
+											<div class="upload-wrap">
+												<div class="upload-images">
+													<img src="assets/img/features/feature-01.jpg" alt="Upload Image">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+												<div class="upload-images">
+													<img src="assets/img/features/feature-02.jpg" alt="Upload Image">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+											</div>
+										</div>
+								
+								
+						</div>
+					</div>
+					
+					<br><br>
+					 <h4 class="card-title">Address info</h4>
+					<div class="row form-row">
+					
+					<div class="col-12 col-md-4">
+						
+						<div class="form-group">
+							<label>Address Line 1</label>
+							<input type="text" class="form-control" id="address_1" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Address Line 2</label>
+							<input type="text" class="form-control" id="address_2" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label>Country</label>
+							<select class="form-control select" id="country" required>
+								<option value="3">Albania</option>
+								<option value="2">Brazil</option>
+								<option value="1">India</option>
+							</select>
+						</div>
+					</div>
+					
+
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label>State/Province</label>
+							<select class="form-control select" id="state" required>
+								<option value="1">Karnataka</option>
+								<option value="2">Kerala</option>
+								<option value="3">New delhi</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label>City</label>
+							<select class="form-control select" id="city" required>
+								<option value="1">Bangalore</option>
+								<option value="2">Ahmedabad</option>
+								<option value="3">Chennai</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Postal Code</label>
+							<input type="text" class="form-control" id="postalcode" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Alternate Phone 1</label>
+							<input type="text" class="form-control" id="phone1" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Alternate Phone 2</label>
+							<input type="text" class="form-control" id="phone2" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Alternate Phone 3</label>
+							<input type="text" class="form-control" id="phone3" required>
+						</div>
+					</div>
+				</div>
+<!--
+				<div class="add-more">
+					<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
+				</div>
+-->
+		<!-- /Contact Details -->
+		
+		
+		<!-- About Me -->
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">About me</h4>
+				<div class="form-group mb-0">
+				  <label>Biography</label>
+					<textarea class="form-control" rows="5" id="biography"></textarea>
+				</div>
+			</div>
+		</div>
+		<!-- /About Me -->
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Are you associated with any?</h4><br><br>
+					<div id="pricing_select">
+						<div class="custom-control custom-checkbox custom-control-inline">
+							<input type="checkbox" class="custom-control-input" checked id="clinicid">
+							<label class="custom-control-label" for="clinicid">Clinic</label>
+						</div>
+						<div class="custom-control custom-checkbox custom-control-inline">
+							<input type="checkbox" class="custom-control-input" id="hospitalid">
+							<label class="custom-control-label" for="hospitalid">Hospital</label>
+						</div><br><br>
+											
+										</div>
+						</div>
+					<div class="submit-section submit-btn-bottom">
+						<input type="submit" class="btn btn-primary submit-btn" onclick="saveBasicInfo()" value="SaveChanges" />
+					</div>
+                  <div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                  </div>
+                </div>
+			  </div>
+			  </div>
+				
+
+              <div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+                <h3 class="multisteps-form__title" style="padding:15px;">Clinic info</h3>
+                <div class="multisteps-form__content">
+				
+					<div class="form-row" style="padding:15px;">
+						
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Clinic Name</label>
+									<input type="text" class="form-control" id="ClincName">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Clinic Address</label>
+									<input type="text" class="form-control" id="ClincAdd">
+								</div>
+							</div>
+							<br>
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">Alternate Phone 1</label>
+									<input type="text" class="form-control" id="ClincPhone1">
+								</div>
+							</div>
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">Alternate Phone 2</label>
+									<input type="text" class="form-control" id="ClincPhone2">
+								</div>
+							</div>
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">Alternate Phone 3</label>
+									<input type="text" class="form-control" id="ClincPhone3">
+								</div>
+							</div>
+							
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">Add amount</label>
+									<input type="text" class="form-control" id="ClincAmount">
+								</div>
+							</div>
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">GST</label>
+									<input type="text" class="form-control" id="ClincGST">
+								</div>
+							</div>
+						</div>
+						
+						<div class="add-more">
+							<a href="javascript:void(0);" class="add-clinic"><i class="fa fa-plus-circle"></i> Add More</a>
+						</div>
+									
+				<div class="submit-section submit-btn-bottom">
+					<button type="submit" class="btn btn-primary submit-btn" onclick="saveClinicInfo()">Save Clinic Info</button>
+				</div>
+			
+						
+						<div class="col-12">
+							<br><br>
+							<h4 class="card-title">Services and specialization</h4>
+									<div class="form-group">
+									  <label>Services</label>
+										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Enter Services" name="services" value="Tooth cleaning " id="services">
+										<small class="form-text text-muted">Note : Type &amp; Press enter to add new services</small>
+									</div> 
+									<div class="submit-section submit-btn-bottom">
+										<button type="submit" class="btn btn-primary submit-btn" onclick="saveServices()">Save Services</button>
+									</div>
+									<div class="form-group mb-0">
+										<label>Specialization </label>
+										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Enter Specialization" name="specialist" value="Children Care,Dental Care" id="specialist">
+										<small class="form-text text-muted">Note : Type &amp; Press  enter to add new specialization</small>
+									</div> 
+									<div class="submit-section submit-btn-bottom">
+										<button type="submit" class="btn btn-primary submit-btn" onclick="saveSpecialization()">Save Specializations</button>
+									</div>
+						</div>
+
+						
+				  	<div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                  </div>
+					
+				</div>
+              </div>
+			<!--Section 2 : Clinic Info End -->	
+			
+			<!--Section 3 : Experience Start-->
+			<div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+            <h3 class="multisteps-form__title" style="padding:15px;">Experience</h3>
+            <div class="multisteps-form__content">
+					
+					<h4 class="card-title" style="padding:15px;">Education</h4>
+									<div class="education-info" style="padding:15px;">
+										<div class="row form-row education-cont">
+											 
+												
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Degree</label>
+															<input type="text" class="form-control" id="degreeID"/>
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>College/Institute</label>
+															<input type="text" class="form-control" id="collegeID"/>
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Year of Completion</label>
+															<input type="text" class="form-control" id="yocID"/>
+														</div> 
+													</div>
+												
+										
+										</div>
+									</div>
+									<div class="add-more" style="padding-left:15px;">
+										<a href="javascript:void(0);" class="add-education"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+					
+									<br><br>
+									<div class="submit-section submit-btn-bottom">
+										<button type="submit" class="btn btn-primary submit-btn" onclick="saveEducationInfo()">Add Education Info</button>
+									</div>
+					
+											<div class="form-group" style="padding-left:15px; padding-right:15px">
+												<label>Certificate images</label>
+												<form action="#" class="dropzone"></form>
+											</div>
+
+											<div class="upload-wrap" style="padding-left:15px;">
+												<div class="upload-images">
+													<img src="assets/img/features/feature-01.jpg" alt="Upload Image">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+												<div class="upload-images">
+													<img src="assets/img/features/feature-02.jpg" alt="Upload Image">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+											</div>
+											
+											<div class="submit-section submit-btn-bottom">
+												<button type="submit" class="btn btn-primary submit-btn" onclick="uploadEduDoc()">Upload Documents</button>
+											</div>
+
+						
+					
+					
+					
+					
+									<div class="experience-info" style="padding-left:15px; padding-right:15px">
+										<div class="row form-row experience-cont">
+											
+												
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Hospital Name</label>
+															<input type="text" class="form-control">
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Start year</label>
+															<input type="text" class="form-control" placeholder="yyyy">
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>End year / till date</label>
+															<input type="text" class="form-control" placeholder="yyyy">
+														</div> 
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Designation</label>
+															<input type="text" class="form-control">
+														</div> 
+													</div>
+										
+														
+											
+										</div>
+									</div>
+									<div class="add-more" style="padding-left:15px; padding-right:15px">
+										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+					
+					
+					
+					
+					<br><br>
+					
+					<h4 class="card-title" style="padding-left:15px; padding-right:15px">Awards</h4>
+									<div class="awards-info" style="padding-left:15px; padding-right:15px">
+										<div class="row form-row awards-cont">
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Awards</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Year</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-award"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+					
+					
+					
+					
+                  <div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                     <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                  </div>
+                </div>
+              </div>
+
+				
+				
+				
+				
+				
+				
+              <div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+                <h3 class="multisteps-form__title" style="padding-left:15px; padding-right:15px">Confirm</h3><br>
+                <div class="multisteps-form__content" style="padding-left:15px; padding-right:15px">
+                  
+									<div class="membership-info">
+										<div class="row form-row membership-cont">
+											<div class="col-12 col-md-10 col-lg-5">
+												<div class="form-group">
+													<label>Memberships</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-membership"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+					
+					<br><br>
+					<h4 class="card-title">Practice registration details&nbsp;</h4>
+									<div class="registrations-info">
+										<div class="row form-row reg-cont">
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Registration no.</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Year</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div><br><br>
+					
+					
+					
+											<div class="form-group">
+												<label>Upload Files</label>
+												<form action="#" class="dropzone"></form>
+											</div>
+											<div class="upload-wrap">
+												<div class="upload-images">
+													<img src="assets/img/features/feature-01.jpg" alt="Upload Image">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+												<div class="upload-images">
+													<img src="assets/img/features/feature-02.jpg" alt="Upload Image">
+													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
+												</div>
+											</div>
+						
+					
+                  <div class="button-row d-flex mt-4">
+                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                    <button class="btn btn-success ml-auto" type="button" title="Send">Submit</button>
+                  </div>
+                </div>
+              </div>
+				
+				
+            </form>
+			</div>
+        </div>
+      </div>
+									
+									
+									
+									
+									
+									
+									
+									
+						
+									
+									
+									
+      				
+									
+								</div>
+							</div>	
+</div>
+	</div>
+		</div>
+			</div>
+			<!-- /Page Content -->
+		
+			<!-- Footer -->
+			<footer class="footer">
+				
+				<!-- Footer Top -->
+				<div class="footer-top">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-about">
+									<div class="footer-logo">
+										<img src="assets/img/footer-logo.png" alt="logo">
+									</div>
+									<div class="footer-about-content">
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+										<div class="social-icon">
+											<ul>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-facebook-f"></i> </a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-twitter"></i> </a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+												</li>
+												<li>
+													<a href="#" target="_blank"><i class="fab fa-dribbble"></i> </a>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-menu">
+									<h2 class="footer-title">For Patients</h2>
+									<ul>
+										<li><a href="search.html">Search for Doctors</a></li>
+										<li><a href="login.html">Login</a></li>
+										<li><a href="register.html">Register</a></li>
+										<li><a href="booking.html">Booking</a></li>
+										<li><a href="patient-dashboard.html">Patient Dashboard</a></li>
+									</ul>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-menu">
+									<h2 class="footer-title">For Doctors</h2>
+									<ul>
+										<li><a href="appointments.html">Appointments</a></li>
+										<li><a href="chat.html">Chat</a></li>
+										<li><a href="login.html">Login</a></li>
+										<li><a href="doctor-register.html">Register</a></li>
+										<li><a href="doctor-dashboard.html">Doctor Dashboard</a></li>
+									</ul>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+							<div class="col-lg-3 col-md-6">
+							
+								<!-- Footer Widget -->
+								<div class="footer-widget footer-contact">
+									<h2 class="footer-title">Contact Us</h2>
+									<div class="footer-contact-info">
+										<div class="footer-address">
+											<span><i class="fas fa-map-marker-alt"></i></span>
+											<p> 1384, 10th main, RPC layout, <br> Vijayanagar, Bangalore-560040 </p>
+										</div>
+										<p>
+											<i class="fas fa-phone-alt"></i>
+											+1 (732) 258-5168
+										</p>
+										<p class="mb-0">
+											<i class="fas fa-envelope"></i>
+											info@rocketmedecin.com
+										</p>
+									</div>
+								</div>
+								<!-- /Footer Widget -->
+								
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<!-- /Footer Top -->
+				
+				<!-- Footer Bottom -->
+                <div class="footer-bottom">
+					<div class="container-fluid">
+					
+						<!-- Copyright -->
+						<div class="copyright">
+							<div class="row">
+								<div class="col-md-6 col-lg-6">
+									<div class="copyright-text">
+										<p class="mb-0">&copy; 2020 Rocket Medecin. All rights reserved. | Powered by Pixton Technologies</p>
+									</div>
+								</div>
+								<div class="col-md-6 col-lg-6">
+								
+									<!-- Copyright Menu -->
+									<div class="copyright-menu">
+										<ul class="policy-menu">
+											<li><a href="term-condition.html">Terms and Conditions</a></li>
+											<li><a href="privacy-policy.html">Policy</a></li>
+										</ul>
+									</div>
+									<!-- /Copyright Menu -->
+									
+								</div>
+							</div>
+						</div>
+						<!-- /Copyright -->
+						
+					</div>
+				</div>
+				<!-- /Footer Bottom -->
+				
+			</footer>
+			<!-- /Footer -->
+		   
+		</div>
+		<!-- /Main Wrapper -->
+	  
+		<!-- jQuery -->
+		<script src="assets/js/jquery.min.js"></script>
+		
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/popper.min.js"></script>
+		<script src="assets/js/popper.min.js"></script>
+		
+		<script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+        <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+		
+		<script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+		<script src="assets/plugins/select2/js/select2.min.js"></script>
+		
+		<script src="assets/plugins/select2/js/select2.min.js"></script>
+		<script src="assets/plugins/dropzone/dropzone.min.js"></script>
+		
+		<script src="assets/plugins/dropzone/dropzone.min.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		<script src="assets/js/moment.min.js"></script>
+		
+		
+		<script src="assets/js/bootstrap-datetimepicker.min.js"></script>
+		<script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
+		
+		<script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
+		<script src="assets/js/profile-settings.js"></script>
+						
+		<script src="assets/js/script.js"></script>
+		<script src="assets/js/wizard.js"></script>
+		
+		<script>
+			
+			function designation()
+			{
+				var des = document.getElementById('designa');
+				//$('#designate').append('<p>' +aaa.value+'</p>');
+				$('#designate').html('<p>' +des.value+'</p>');
+			}
+
+			//Save Basic Info
+			function saveBasicInfo()
+			{
+			var gend = document.getElementById("gendertype");
+			var strGender = gend.options[gend.selectedIndex].value;
+			var proofname = document.getElementById("proofname");
+			var proofname = proofname.options[proofname.selectedIndex].value;
+			   var country = document.getElementById("country");
+			  
+			var country = country.options[country.selectedIndex].value;
+           	var state = document.getElementById("state");
+			var state = state .options[state.selectedIndex].value;
+			var city = document.getElementById("city");
+			var city = city.options[city.selectedIndex].value;
+			var hosId,clinID;
+			
+			if ($('#hospitalid').is(":checked"))
+			{	hosId = 1;	}
+			else
+			{		hosId = 0;		}
+			if ($('#clinicid').is(":checked"))
+			{	clinID = 1;		}
+			else
+			{	clinID = 0;	}
+					
+			var DateOB= $('#dob').val();
+			
+			function changeDateFormat(inputDate){  
+    			var splitDate = inputDate.split('/');
+    				if(splitDate.count == 0){
+        				return null;
+    					}
+  				var year = splitDate[2];
+    			var month = splitDate[1];
+    			var day = splitDate[0]; 
+
+    			return month + '/' + day + '/' + year;
+				}
+			var newDate = changeDateFormat(DateOB);
+				
+			var data1 = {
+						Firstname: firstname,
+						Lastname: lastname,
+						Gender: strGender,
+						EmailId1: emailid,
+						Mobile1 : mobileid,
+						DOB:newDate,
+						// $('#dob').val(),
+						DoctorDesignationDisplay: $('#designa').val(),
+						DoctorProfileHandById: $('#profilehandledby').val(),
+						Phone1: $('#phone1').val(),
+						Phone2: $('#phone2').val(),
+						Phone3: $('#phone3').val(),
+						Biography: $('#biography').val(),
+						AddressLine1: $('#address_1').val(),
+						AddressLine2: $('#address_2').val(),
+						CityId: $('#city').val(),
+						StateId: $('#state').val(),
+						Zipcode: $('#postalcode').val(),
+						CountryId: $('#country').val(),
+						GovtproofId: $('#proofname').val(),
+						GovtproofNo: $('#proofno').val(),
+						LinkedToClinic: clinID,
+						LinkedToHosp: hosId,
+					   };
+
+					   
+			// alert(JSON.stringify(data1));
+				console.log("Basic Info Data :"+JSON.stringify(data1));
+			$.ajax({
+				url: "http://localhost/rocketmed/api/Doctor/"+docIDGlobal,
+				method:"PUT",
+				async: false,
+				contentType: 'application/json; charset=utf-8',
+				data:JSON.stringify(data1),
+				timeout: 36000, 
+				error: function(xhr, status, error) {
+  					var err = eval("(" + xhr.responseText + ")");
+					  console.log(err.Message);
+  				//	alert(err.Message);
+				//	alert(status);
+					alert("Error: Pease Try Again with Valid Values");
+					if (response == null)
+						{
+						document.getElementById("register_failed").innerHTML = "Registration Failed. Pease Try Again"; 
+						}
+						else if (responseR.status == "400")
+						{
+							document.getElementById("register_failed").innerHTML = "Mail ID/ Phone No. Already Registerd. Pease Try Again"; 
+						}
+						else{
+							console.log("Your ID : "+response);
+						alert('Record Updated Successfully Inside Error');
+						//baseURL=document.location.href;
+						//alert(baseURL);
+						//window.open('doctor-dashboard.html', "_self");
+						}
+				},
+				success: function(response){
+						console.log(response);
+						console.log("Your ID : "+response);
+						alert('Doctors Basic Info Updated Successfully !!');
+						//baseURL=document.location.href;
+						//alert(baseURL);
+						//window.open('doctor-dashboard.html', "_self");
+						
+						//document.location.href = "./login.html" , target="_blank";
+						}
+			});
+			}
+			
+
+			//Save Clinic Info
+			function saveClinicInfo()
+			{
+				
+			// var clinicNme = document.getElementById("clinicName").value;
+			// var clinicNme = clinicNme.options[clinicNme.selectedIndex].value;
+			// var clinicAddr = document.getElementById("clinicAddress");
+			// var clinicAddr = clinicAddr.options[clinicAddr.selectedIndex].value;
+			// var clinic = document.getElementById("clinicAdd");
+			// var clinic = clinic.options[clinic.selectedIndex].value;
+			// var clinic = document.getElementById("clinic");
+			// var clinic = clinic.options[clinic.selectedIndex].value;
+			// var clinic = document.getElementById("clinic");
+			// var clinic = clinic.options[clinic.selectedIndex].value;
+			// var clinic = document.getElementById("clinic");
+			// var clinic = clinic.options[clinic.selectedIndex].value;
+
+
+
+			//Hardcoded, should move to profile-settings.js file and implement with counter	
+				var data2 = {
+					ClinicId:"9",
+					ClinicName:"Arogya Clinic T",
+					ClinicAddress:"7",
+					AlternatePhone1:"911111111",
+					AlternatePhone2:"8222222222",
+					AlternatePhone3:"7333333333",
+					Amount:"1000",
+					GST:"180",
+					OrderBy:"3"
+
+				}
+				console.log("Clinic Info Json:"+JSON.stringify(data2));
+				
+				/*
+				"data": JSON.stringify({"ClinicId":"9","ClinicName":"Arogya Clinic T",
+				"ClinicAddress":"Vijaya Bank Layout T, 560067","AlternatePhone1":"911111111",
+				"AlternatePhone2":"8222222222","AlternatePhone3":"7333333333","Amount":"1000","GST":"180","OrderBy":"3"})};
+			*/
+			$.ajax({
+				url: "http://localhost/rocketmed/api/ClinicInfo/"+docIDGlobal,
+				method:"PUT",
+				async: false,
+				contentType: 'application/json; charset=utf-8',
+				data:JSON.stringify(data2),
+				timeout: 36000, 
+				error: function(xhr, status, error) {
+  					var err = eval("(" + xhr.responseText + ")");
+  					console.log("Error Message"+err.Message);		
+					alert("Error saving Clinic Info. Pease Try Again");
+					
+				},
+				success: function(response1){
+						console.log(response1);
+						console.log("Clinic Info Updated : "+response1);
+						alert('Clinic/Hospital Info Updated Successfully !!');
+						}
+			});
+			}
+
+			//Save Clinic Specializations Details
+		function saveSpecialization()
+		{	let specData={"DoctorNo":"4","SpecializationName":"Spec 13","OrderBy":"44"};
+			specData = JSON.stringify(specData);
+			var d2,d1;
+			var specializations_All = document.getElementById("specialist").value;
+			var str_array = specializations_All.split(',');
+			
+			// {"DoctorNo":"00000004","ServiceName":"Service 3","OrderBy":"1"},{"DoctorNo":"00000004","ServiceName":"Service 4","OrderBy":"2"}
+
+			if(str_array.length == 1)
+			{
+				specData= {DoctorNo:docIDGlobal,SpecializationName:specializations_All,OrderBy:"1"};
+				specData = JSON.stringify(specData);
+			}
+			if(str_array.length>=2)
+			{
+				for(var i = 0; i < str_array.length; i++) {
+   					// Trim the excess whitespace.
+   					//str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");					
+					d2= {DoctorNo:docIDGlobal,SpecializationName:str_array[i],OrderBy:i};
+					specData += ","+ JSON.stringify(d2)  ;
+				}			
+				}
+				console.log("["+specData+"]");
+				$.ajax({
+					url: "http://localhost/rocketmed/api/DocSpec",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+specData+"]",
+					timeout: 36000, 
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Specialization Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Clinic Specializations Info Updated !! ");
+							alert('Clinic Specialization Info Updated Successfully !!');
+							}
+				});
+		}
+		
+		//Save CLinic Services
+		function saveServices()
+		{	let specData={"DoctorNo":"4","ServiceName":"Dummy Service","OrderBy":"44"};
+			specData = JSON.stringify(specData);
+			var d2,d1;
+			var specializations_All = document.getElementById("services").value;
+			var str_array = specializations_All.split(',');
+			
+			// {"DoctorNo":"00000004","ServiceName":"Service 3","OrderBy":"1"},{"DoctorNo":"00000004","ServiceName":"Service 4","OrderBy":"2"}
+
+			if(str_array.length == 1)
+			{
+				specData= {DoctorNo:docIDGlobal,ServiceName:specializations_All,OrderBy:"1"};
+				specData = JSON.stringify(specData);
+			}
+			if(str_array.length>=2)
+			{
+				for(var i = 0; i < str_array.length; i++) {
+   					// Trim the excess whitespace.
+   					//str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+
+					d2= {DoctorNo:docIDGlobal,ServiceName:str_array[i],OrderBy:i};
+					specData += ","+ JSON.stringify(d2)  ;
+				}
+				}
+				console.log("["+specData+"]");
+				$.ajax({
+					url: "http://localhost/rocketmed/api/DocSer",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+specData+"]",
+					timeout: 36000, 
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Services Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Clinic Services Info Updated !!");
+							alert('Clinic Services Info Updated Successfully !!');
+							}
+				});
+		}	
+			</script>
+	</body>
+</html>
