@@ -11,6 +11,9 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
+		
 		<!-- Fontawesome CSS -->
 		<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
 		<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
@@ -246,8 +249,10 @@
 											<div class="patient-details">
 												<h5><b>Patient ID :</b> PT0016</h5>
 												<span class="badge badge-pill bg-success">Verified</span>
+<!--
 													<h5><i class="fas fa-birthday-cake"></i> 24 Jul 1983, 38 years</h5>
 												<h5 class="mb-0"><i class="fas fa-map-marker-alt"></i> Vijayanagar, Bangalore</h5>
+-->
 											</div>
 										</div>
 									</div>
@@ -382,53 +387,37 @@
 													<input type="text" placeholder="+91 88888999999" class="form-control">
 												</div>
 											</div>
-											<div class="col-12 col-md-4">
-												<div class="form-group">
-												<label>Address line 1</label>
-													<input type="text" class="form-control" placeholder="806 Twin Willow Lane">
-												</div>
-											</div>
-											<div class="col-12 col-md-4">
-												<div class="form-group">
-												<label>Address line 2</label>
-													<input type="text" class="form-control" placeholder="">
-												</div>
-											</div>
-											<div class="col-12 col-md-4">
-												<div class="form-group">
-												<label>Address line 3</label>
-													<input type="text" class="form-control" placeholder="">
-												</div>
-											</div>
 											
 											<div class="col-12 col-md-4">
-												<div class="form-group">
-													<label>City</label>
-													<input type="text" class="form-control" placeholder="Bengaluru">
-												</div>
+											<div class="form-group">
+												<label>Profile handled by</label>
+												<select class="form-control select">
+												  <option>Select</option>
+													<option>Self</option>
+													<option>Delegates</option>
+												</select>
 											</div>
-											<div class="col-12 col-md-4">
-												<div class="form-group">
-													<label>State</label>
-													<input type="text" class="form-control" placeholder="Karnataka">
-												</div>
+										</div>
+										</div>
+										
+										
+										
+										<br>
+										<div class="card contact-card">
+								<div class="card-body">
+									<h4 class="card-title">Insurance Details</h4>
+									<div class="row form-row">
+										
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Insurance provider</label>
+												<input type="text" class="form-control">
 											</div>
-											<div class="col-12 col-md-4">
-												<div class="form-group">
-													<label>Zip Code</label>
-													<input type="text" class="form-control" placeholder="560001">
-												</div>
-											</div>
-											<div class="col-12 col-md-4">
-												<div class="form-group">
-													<label>Country</label>
-													<input type="text" class="form-control" placeholder="India">
-												</div>
-											</div>
-											<div class="col-12 col-md-4">
+										</div>
+										<div class="col-12 col-md-4">
 												<div class="form-group">
 													<label>Insurance policy no.</label>
-													<input type="text" class="form-control" placeholder="India">
+													<input type="text" class="form-control" >
 												</div>
 											</div>
 											<div class="col-12 col-md-4">
@@ -439,20 +428,255 @@
 													</div>
 												</div>
 											</div>
-											
-										</div><form action="#" class="dropzone"></form>
-									<!-- Clinic Info -->
+									</div>
+<!--
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /Contact Details -->
+										
+										
+										
+										<div class="card contact-card">
+								<div class="card-body">
+									<h4 class="card-title">Billing contact details</h4>
+									<div class="row form-row">
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Address Line 1</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Address Line 2</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Country</label>
+												<select class="form-control select">
+													<option>Select</option>
+													<option>Albania</option>
+													<option>Brazil</option>
+													<option>India</option>
+												</select>
+											</div>
+										</div>
+										
+
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>State/Province</label>
+												<select class="form-control select">
+													<option>Select</option>
+													<option>Karnataka</option>
+													<option>Kerala</option>
+													<option>New delhi</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>City</label>
+												<select class="form-control select">
+													<option>Select</option>
+													<option>Ahmedabad</option>
+													<option>Bangalore</option>
+													<option>Chennai</option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Postal Code</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Alternate Phone 1</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Alternate Phone 2</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Alternate Phone 3</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+									</div>
+<!--
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /Contact Details -->
+										
+										
+										
+										<div class="card contact-card">
+								<div class="card-body">
+									<h4 class="card-title">Delivery contact details</h4>
+									<div class="row form-row">
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Address Line 1</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Address Line 2</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>Country</label>
+												<select class="form-control select">
+													<option>Select</option>
+													<option>Albania</option>
+													<option>Brazil</option>
+													<option>India</option>
+												</select>
+											</div>
+										</div>
+										
+
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>State/Province</label>
+												<select class="form-control select">
+													<option>Select</option>
+													<option>Karnataka</option>
+													<option>Kerala</option>
+													<option>New delhi</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label>City</label>
+												<select class="form-control select">
+													<option>Select</option>
+													<option>Ahmedabad</option>
+													<option>Bangalore</option>
+													<option>Chennai</option>
+												</select>
+											</div>
+										</div>
+										
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Postal Code</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Alternate Phone 1</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Alternate Phone 2</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-12 col-md-4">
+											<div class="form-group">
+												<label class="control-label">Alternate Phone 3</label>
+												<input type="text" class="form-control">
+											</div>
+										</div>
+									</div>
+<!--
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+-->
+								</div>
+							</div>
+							<!-- /Contact Details -->
+								<!-- Services and Specialization -->
+							<div class="card services-card">
+								<div class="card-body">
+									<h4 class="card-title">Syptoms</h4>
+									<div class="form-group">
+									  <label>Services</label>
+										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Enter Services" name="services" value="Tooth cleaning " id="services">
+										<small class="form-text text-muted">Note : Type &amp; Press enter to add new services</small>
+									</div> 
+<!--
+									<div class="form-group mb-0">
+										<label>Specialization </label>
+										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Enter Specialization" name="specialist" value="Children Care,Dental Care" id="specialist">
+										<small class="form-text text-muted">Note : Type &amp; Press  enter to add new specialization</small>
+									</div> 
+-->
+							  </div>              
+							</div>
+							<!-- /Services and Specialization -->
+										
 							<div class="card">
 								<div class="card-body">
-									<h4 class="card-title">Upload documents</h4>
-									<div class="row form-row">
-										
-										
-										<div class="col-md-12">
+									<h4 class="card-title">ID proof</h4>
+									<div class="registrations-info">
+										<div class="row form-row reg-cont">
+											<div class="col-12 col-md-4">
 											<div class="form-group">
-												<label>Drop file</label>
+												<label>Select ID proof </label>
+												<select class="form-control select">
+													<option>Select</option>
+													<option>Aadhar</option>
+													<option>SSN</option>
+													<option>Passport</option>
+												</select>
+											</div>
+										</div>
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>ID proof number</label>
+													<input type="text" class="form-control">
+												</div> 
+											</div>
+										</div>
+									</div>
+									<br>
+									
+									<div class="col-md-12">
+										
+											<div class="form-group">
+												<label>Upload documents</label>
 												<form action="#" class="dropzone"></form>
 											</div>
+											
+											
+
+										</div>
+									
+									
+									<div class="col-md-12">
+											<div class="form-group">
+												
+												<form action="#" class="dropzone"></form>
+											</div>
+
 											<div class="upload-wrap">
 												<div class="upload-images">
 													<img src="assets/img/features/feature-01.jpg" alt="Upload Image">
@@ -463,11 +687,11 @@
 													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
 												</div>
 											</div>
+
 										</div>
-									</div>
+									
 								</div>
 							</div>
-							<!-- /Clinic Info --> 
 										
 											
 										<div class="submit-section">
@@ -672,6 +896,9 @@
 		<!-- Sticky Sidebar JS -->
         <script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+		
+		<!-- Bootstrap Tagsinput JS -->
+		<script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 		
 		<!-- Custom JS -->
 		<script src="assets/js/script.js"></script>
