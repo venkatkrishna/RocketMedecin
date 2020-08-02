@@ -54,21 +54,64 @@
 
 	   </style>
 
+	   <script>
+		   /*
+		function getParameterByName(name, url) {
+		if (!url) url = window.location.href;
+		alert(url);
+		name = name.replace(/[\[\]]/g, '\\$&');
+		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		results = regex.exec(url);
+		if (!results) return null;
+		if (!results[2]) return '';
+		return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
+		
+		var sn1 = getParameterByName('docid');
+		var sn2 = getParameterByName('tokenid');
+		alert(sn1+"/n "+sn2);
+
+		//document.getElementById("write").innerHTML = sn;
+		*/
+		
+		</script>
+               
 		<script>
+			setTimeout(()=>{
+				console.log("ALL", document.querySelector('.multisteps-form__form'));
+			}, 100);
 			var docIDGlobal;
+			var firstname ,lastname ,  emailid , mobileid, authToken , user_ID ;
 			
 			window.onload = function () {
-			var url = document.location.href,
-				params = url.split('?')[1].split('&'),
-				data = {}, tmp;
-			for (var i = 0, l = params.length; i < l; i++) {
+
+				authToken= " bearer " +localStorage.getItem("tokenid");
+				user_ID=localStorage.getItem("docid");
+				alert(authToken);
+				
+
+             /*   Logic for Get  
+			var data = {}, tmp;
+			var url = document.location.href;
+			
+			//Write logic to get the post data from Form and split the Auth Token and Doctor ID
+			var authToken = "bearer HsX6gUVoGPLLU2ScXOPzEUwjt3P9giILCsg2loATTXavI5WV4U2-TCmbK6zf_g83jJ_Ijb9eShywivs5cTHxpD6DkEsmQvnLMCmP1t8qHEkihVNwkYizSvKpC7kRkhAVYJbCKQ4vvbbZGM72b56_82NOofyM_Jsxy3QoSA5wkWRK5ddTkqHa24_LbvK4nfJM0u90a32TNmtQ2_kv0OWOJQBiLzdq0Gx9YWrWzhj3LT7ZT5QiHPCVSKYKsnf51d4GhcC66ozwpPMuNtqwTaF1eg";	
+
+			if ( url.includes("?") )
+                    {
+				var params = url.split('?')[1].split('&');
+				
+			for(var i = 0, l = params.length; i < l; i++){
+			
 				 tmp = params[i].split('=');
 				 data[tmp[0]] = tmp[1];
+			} 
 			}
 			
-			//alert(data.userid);
+			alert(data.userid);
 			var user_ID = data.userid;
-			
+			*/
+		
 			if (user_ID.indexOf("PAT") !== -1)
 			{
 			  var patient_id = user_ID.slice(3,user_ID.length);
@@ -89,10 +132,6 @@
 							  $('#first_name').append('<p>' + data.PatientDtls[0].Firstname + '</p>');
 								   $('#nav_name').append(  data.PatientDtls[0].Firstname );
 									$('#image').prepend('<img id="theImg" src="./images/patient_image.png" alt="" class="img-fluid img-thumbnail" />');
-				  
-									
-					   
-		
 				});
 			}
 			
@@ -104,37 +143,34 @@
 			 "url": "http://localhost/rocketmed/api/Doctor/"+DOC_id,
 			 "method": "GET",
 			 "timeout": 0,
+			 "headers": { "Authorization":  authToken
+				 }
 			 };
-			 
+			 alert(docIDGlobal);
 			$.ajax(setting1).done(function (resp1) {
 				//sleep(10);
 				//console.log(resp1);
 				//console.log("Doctor details;"+ resp1);
 				// convert resp1 from json to key value pair
 				var data = $.parseJSON(resp1);
-			//	alert(JSON.stringify(data));
-			console.log(JSON.stringify(data));
+			  alert(JSON.stringify(data));
+		        //console.log(JSON.stringify(data));
 			
-			
-			
-			
-			
-				$('#append_list').append('<p>' + data.DoctorDtls[0].DoctorId + '</p>');
+			$('#append_list').append('<p>' + data.DoctorDtls[0].DoctorId + '</p>');
 					 $('#firstname1').append('<p>' + data.DoctorDtls[0].Firstname + '</p>');
 					   $('#lastname').append('<p>' + data.DoctorDtls[0].Lastname + '</p>');
 						 $('#email_ID').append('<p>' + data.DoctorDtls[0].EmailId1 + '</p>');
-							  $('#first_name').append('<p>' + data.DoctorDtls[0].Firstname + '</p>');
-								    
-									 // $('#image').prepend('<img id="theImg" src="./images/doctor_image.jpg" alt="" class="img-fluid img-thumbnail" />');
-									var firstname =  data.DoctorDtls[0].Firstname ;
-									var  lastname = data.DoctorDtls[0].Lastname ;
-									var  emailid = data.DoctorDtls[0].EmailId1;
-									var mobile = data.DoctorDtls[0].Mobile1 ;
+							//  $('#first_name').append('<p>' + data.DoctorDtls[0].Firstname + '</p>');
+							// $('#image').prepend('<img id="theImg" src="./images/doctor_image.jpg" alt="" class="img-fluid img-thumbnail" />');
+									 firstname =  data.DoctorDtls[0].Firstname ;
+									  lastname = data.DoctorDtls[0].Lastname ;
+									  emailid = data.DoctorDtls[0].EmailId1;
+									 mobileid = data.DoctorDtls[0].Mobile1 ;
 								
 									$("#firstname_placeholder").attr("placeholder", firstname);
 									$("#lastname_placeholder").attr("placeholder", lastname);
 									$("#emailid_placeholder").attr("placeholder", emailid );
-									$("#mobile").attr("placeholder", mobile );
+									$("#mobileNumm").attr("placeholder", mobileid );
 
 				  /* for(var i = 0; i < data.length; i++) {
 						 //console.log(data);
@@ -152,8 +188,114 @@
 			});
 			}
 			
+// 			window.Dropzone.options.myDropzone= {
+//     url: '',
+//     autoProcessQueue: false,
+//     uploadMultiple: true,
+//     parallelUploads: 5,
+//     maxFiles: 5,
+//     maxFilesize: 1,
+//     acceptedFiles: 'image/*',
+//     addRemoveLinks: true,
+//     init: function() {
+//         dzClosure = this; // Makes sure that 'this' is understood inside the functions below.
+        
+//         // for Dropzone to process the queue (instead of default form behavior):
+//         document.getElementById("submit-certificates").addEventListener("click", function(e) {
+//             // Make sure that the form isn't actually being sent.
+//             e.preventDefault();
+// 			e.stopPropagation();
+// 			conole.log('in herre');
+//             dzClosure.processQueue();
+//         });
+
+//         //send all the form data along with the files:
+//         this.on("sendingmultiple", function(data, xhr, formData) {
+//             formData.append("firstname", jQuery("#firstname").val());
+//             formData.append("lastname", jQuery("#lastname").val());
+//         });
+//     }
+// }
 			}
-			
+			setTimeout(()=>{
+				console.log("ALL", document.querySelector('.multisteps-form__form'));
+			}, 50);
+		// 	Dropzone.options.myDropzone = {
+        //     url: "#",
+        //     autoProcessQueue: false,
+        //     uploadMultiple: true,
+        //     parallelUploads: 100,
+        //     maxFiles: 100,
+        //     acceptedFiles: "image/*",
+
+        //     init: function () {
+
+        //         var submitButton = document.querySelector("#submit-certificates");
+		// 		var wrapperThis = this;
+		// 		console.log(this.wrapperThis);
+        //         submitButton.addEventListener("click", function () {
+		// 			console.log(wrapperThis);
+        //             wrapperThis.processQueue();
+        //         });
+
+        //         this.on("addedfile", function (file) {
+
+        //             // Create the remove button
+        //             var removeButton = Dropzone.createElement("<button class='btn btn-lg dark'>Remove File</button>");
+
+        //             // Listen to the click event
+        //             removeButton.addEventListener("click", function (e) {
+        //                 // Make sure the button click doesn't submit the form:
+        //                 e.preventDefault();
+        //                 e.stopPropagation();
+
+        //                 // Remove the file preview.
+        //                 wrapperThis.removeFile(file);
+        //                 // If you want to the delete the file on the server as well,
+        //                 // you can do the AJAX request here.
+        //             });
+
+        //             // Add the button to the file preview element.
+        //             file.previewElement.appendChild(removeButton);
+        //         });
+
+        //         this.on('sendingmultiple', function (data, xhr, formData) {
+        //             formData.append("Username", $("#Username").val());
+        //         });
+        //     }
+		// };
+		/* In Testing Mode
+            $(document).ready(function () {
+			Dropzone.options.dropzoneFrom = {
+				autoProcessQueue: false,
+				acceptedFiles:".png,.jpg,.gif,.bmp,.jpeg",
+				init: function() {
+					var submit = document.querySelector("submit-certificates");
+					myDropzone = this;
+					submit.addEventListener("click", function(){
+						myDropzone.processQueue();
+					});
+					this.on('thumbnail', function(file) {
+                     if (file.accepted !== false) {
+                     if (file.width < 1024 || file.height < 768) {
+                     file.rejectDimensions();
+                      }
+                  else {
+                    file.acceptDimensions();
+                   }
+               }
+              });
+
+					this.on("complete", function() {
+						if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
+						{
+							var _this = this;
+							_this.removeAllFiles();
+						}
+					})
+				}
+			}
+});*/
 			</script>	
 
 	
@@ -356,7 +498,7 @@
 											
 											<div class="patient-details">
 												<h5 class="mb-0"><span id="designate" > </span></h5>
-												<h6 style="display:flex;justify-content: center;" >Doctor ID : &nbsp; <span id="append_list" > </span></h6>
+												<h6 style="display:flex;justify-content: center;" >DOC: &nbsp; <span id="append_list" > </span></h6>
 												<span class="badge badge-pill bg-success">Verified</span>
 											</div>
 										</div>
@@ -468,7 +610,8 @@
               <button class="multisteps-form__progress-btn" type="button" title="Confirm">Confirm </button>
             </div>
           </div>
-        </div>
+		</div>
+		
         <div class="row">
   <div class="col-12 m-auto">
             <form class="multisteps-form__form">
@@ -480,21 +623,21 @@
                   <div class="col-12 col-md-4">
 											<div class="form-group">
 												<label>First name <span class="text-danger">*</span></label>
-												<input type="text" class="form-control" id="firstname_placeholder" class="firstname" >
+												<input type="text" class="form-control" id="firstname_placeholder" class="firstname" required >
 											</div>
 										</div>
 
                   <div class="col-12 col-md-4">
 											<div class="form-group">
 												<label>Last name <span class="text-danger">*</span></label>
-												<input type="text" class="form-control" id="lastname_placeholder" class="lastname"> 
+												<input type="text" class="form-control" id="lastname_placeholder" class="lastname" required> 
 											</div>
 										</div>
 
                   <div class="col-12 col-md-4">
 											<div class="form-group">
 												<label>Email <span class="text-danger">*</span></label>
-												<input type="email" class="form-control" id="emailid_placeholder" class="email">
+												<input type="email" class="form-control" id="emailid_placeholder" class="email" required>
 											</div>
 										</div>
 					
@@ -508,17 +651,17 @@
 					<div class="col-12 col-md-4">
 											<div class="form-group">
 												<label>Mobile number <span class="text-danger">*</span></label>
-												<input type="text" class="form-control" class="mobile">
+												<input type="text" class="form-control" class="mobile" id="mobileNumm" required>
 											</div>
 										</div>
 					
 					<div class="col-12 col-md-4">
 											<div class="form-group">
 												<label>Gender</label>
-												<select class="form-control select">
-													<option>Select</option>
-													<option>Male</option>
-													<option>Female</option>
+												<select class="form-control select" id="gendertype">
+													
+													<option value="Male">Male</option>
+													<option value="Female">Female</option>
 												</select>
 											</div>
 										</div>
@@ -527,7 +670,7 @@
 												<div class="form-group">
 													<label>Date of birth</label>
 													<div class="cal-icon">
-														<input type="text" class="form-control datetimepicker" placeholder="24-07-1983">
+														<input type="text" class="form-control datetimepicker"  id="dob" required>
 													</div>
 												</div>
 											</div>
@@ -535,40 +678,37 @@
 					<div class="col-12 col-md-4">
 											<div class="form-group">
 												<label>Profile handled by</label>
-												<select class="form-control select">
-												  <option>Select</option>
-													<option>Self</option>
-													<option>Delegates</option>
+												<select class="form-control select" id="profilehandledby" required>
+													<option value="1">Self</option>
+													<option value="2">Delegates</option>
 												</select>
 											</div>
 										</div>
 					
-					
+							
                   
-                </div>
+				</div>
+				
 					<div class="button-row d-flex mt-4">
-                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next" onclick="saveUserInfo()">Next1</button>
                   </div>
               </div>
 				  </div>
 				
 				
-				
-
-              <div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+				<div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
                 <h3 class="multisteps-form__title">Contact details</h3><br>
-                <div class="multisteps-form__content">
+                <div class="multisteps-form__content"> 
 					<div class="registrations-info">
 							<div class="reg-cont">
 											<div class="row form-row">
 										<div class="col-12 col-md-6">
 											<div class="form-group">
 												<label>ID proof name</label>
-												<select class="form-control select">
-													<option>Select</option>
-													<option>Aadhar</option>
-													<option>SSN</option>
-													<option>Passport</option>
+												<select class="form-control select" id="proofname" required>
+													<option value="1">Aadhar</option>
+													<option value="2">SSN</option>
+													<option value="3">Passport</option>
 												</select>
 											</div>
 										</div>
@@ -576,7 +716,7 @@
                   							<div class="col-12 col-md-6">
 												<div class="form-group">
 													<label>ID proof number</label>
-													<input type="text" class="form-control" class="ID_proof_number">
+													<input type="text" class="form-control" id="proofno" required>
 												</div> 
 											</div>
 											</div>
@@ -584,10 +724,10 @@
 		
 				
                   						<div class="col-md-12">
-											<form action="#" class="dropzone"></form>
+											<!-- <form action="#" class="dropzone"></form> -->
 											<div class="form-group">
 												<label>Upload documents</label>
-												<form action="#" class="dropzone"></form>
+												<!-- <form action="#" class="dropzone"></form> -->
 											</div>
 
 											<div class="upload-wrap">
@@ -612,188 +752,180 @@
 					
 					<div class="col-12 col-md-4">
 						
-											<div class="form-group">
-												<label>Address Line 1</label>
-												<input type="text" class="form-control" id="address_1">
-											</div>
-										</div>
-					
-					
-					
-					<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label class="control-label">Address Line 2</label>
-												<input type="text" class="form-control" id="address_2">
-											</div>
-										</div>
-					
-					<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label>Country</label>
-												<select class="form-control select">
-													<option>Select</option>
-													<option>Albania</option>
-													<option>Brazil</option>
-													<option>India</option>
-												</select>
-											</div>
-										</div>
-					
-					<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label>State/Province</label>
-												<select class="form-control select">
-													<option>Select</option>
-													<option>Karnataka</option>
-													<option>Kerala</option>
-													<option>New delhi</option>
-												</select>
-											</div>
-										</div>
-					
-					
-					<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label>City</label>
-												<select class="form-control select">
-													<option>Select</option>
-													<option>Ahmedabad</option>
-													<option>Bangalore</option>
-													<option>Chennai</option>
-												</select>
-											</div>
-										</div>
-					
-					<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label class="control-label">Postal Code</label>
-												<input type="text" class="form-control" id="postalcode">
-											</div>
-										</div>
-					
-					<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label class="control-label">Alternate Phone 1</label>
-												<input type="text" class="form-control" id="#phone1">
-											</div>
-										</div>
-					
-					
-					<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label class="control-label">Alternate Phone 2</label>
-												<input type="text" class="form-control" id="#phone2">
-											</div>
-										</div>
-					
-					<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label class="control-label">Alternate Phone 3</label>
-												<input type="text" class="form-control" id="#phone3">
-											</div>
-										</div>
-						
-						<div class="col-12 ">
-											<div class="form-group">
-						
-						<h4 class="card-title">About me</h4>
-									<div class="form-group mb-0">
-									  <label>Biography</label>
-										<textarea class="form-control" rows="5"></textarea>
-									</div>
-							</div>
+						<div class="form-group">
+							<label>Address Line 1</label>
+							<input type="text" class="form-control" id="address_1" required>
 						</div>
-						
-				
 					</div>
-				
-                  <div class="button-row d-flex mt-4">
-                    <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
-                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
-                  </div>
-                </div>
-              </div>
-				
-				
-				
-				
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Address Line 2</label>
+							<input type="text" class="form-control" id="address_2" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label>Country</label>
+							<select class="form-control select" id="country" required>
+								<option value="3">Albania</option>
+								<option value="2">Brazil</option>
+								<option value="1">India</option>
+							</select>
+						</div>
+					</div>
+					
 
-              <div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
-                <h3 class="multisteps-form__title" style="padding:15px;">Clinic info</h3>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label>State/Province</label>
+							<select class="form-control select" id="state" required>
+								<option value="1">Karnataka</option>
+								<option value="2">Kerala</option>
+								<option value="3">New delhi</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label>City</label>
+							<select class="form-control select" id="city" required>
+								<option value="1">Bangalore</option>
+								<option value="2">Ahmedabad</option>
+								<option value="3">Chennai</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Postal Code</label>
+							<input type="text" class="form-control" id="postalcode" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Alternate Phone 1</label>
+							<input type="text" class="form-control" id="phone1" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Alternate Phone 2</label>
+							<input type="text" class="form-control" id="phone2" required>
+						</div>
+					</div>
+					<div class="col-12 col-md-4">
+						<div class="form-group">
+							<label class="control-label">Alternate Phone 3</label>
+							<input type="text" class="form-control" id="phone3" required>
+						</div>
+					</div>
+				</div>
+<!--
+				<div class="add-more">
+					<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
+				</div>
+-->
+		<!-- /Contact Details -->
+		
+		
+		<!-- About Me -->
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">About me</h4>
+				<div class="form-group mb-0">
+				  <label>Biography</label>
+					<textarea class="form-control" rows="5" id="biography"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="button-row d-flex mt-4">
+            <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+            <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next" onclick="saveContactInfo()">Next2</button>
+        </div>
+			  </div>
+			  </div>
+		<!-- End of section 1-->		
+		<!-- Beginning of Section 2: Clinic Info -->
+		      <!--Add errorResolve1 class as shown below-->
+              <div class="multisteps-form__panel rounded bg-white errorResolve3" data-animation="scaleIn">
+                <h3 class="multisteps-form__title" style="padding:15px;">Clinic info</h3><br>
                 <div class="multisteps-form__content">
 				
+				<!-- /About Me -->
+					
+
 					<div class="form-row" style="padding:15px;">
 						<div class="col-md-12">
-						<h5 class="card-title">Are you associated with any?</h5><br>
-							<div id="pricing_select">
-											<div class="custom-control custom-checkbox custom-control-inline">
-												<input type="checkbox" id="price_free" name="rating_option" class="custom-control-input" value="price_free" checked>
-												<label class="custom-control-label" for="price_free">Clinic</label>
-											</div>
-											<div class="custom-control custom-checkbox custom-control-inline">
-												<input type="checkbox" id="price_custom" name="rating_option" value="custom_price" class="custom-control-input">
-												<label class="custom-control-label" for="price_custom">Hospital</label>
-											</div><br><br>
-											
+							<h5 class="card-title">Are you associated with any?</h5><br>
+								<div id="pricing_select">
+										<div class="custom-control custom-checkbox custom-control-inline">
+											<input type="checkbox" class="custom-control-input" checked id="clinicid">
+											<label class="custom-control-label" for="clinicid">Clinic</label>
 										</div>
+										<div class="custom-control custom-checkbox custom-control-inline">
+											<input type="checkbox" class="custom-control-input" id="hospitalid">
+											<label class="custom-control-label" for="hospitalid">Hospital</label>
+										</div><br><br>
+											
+									</div>
+						
+					</div>
+					<br><br>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Clinic Name</label>
+									<input type="text" class="form-control" id="ClincName">
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+									<label>Clinic Address</label>
+									<input type="text" class="form-control" id="ClincAdd">
+								</div>
+							</div>
+							<br>
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">Alternate Phone 1</label>
+									<input type="text" class="form-control" id="ClincPhone1">
+								</div>
+							</div>
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">Alternate Phone 2</label>
+									<input type="text" class="form-control" id="ClincPhone2">
+								</div>
+							</div>
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">Alternate Phone 3</label>
+									<input type="text" class="form-control" id="ClincPhone3">
+								</div>
+							</div>
+							
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">Add amount</label>
+									<input type="text" class="form-control" id="ClincAmount">
+								</div>
+								<div class="add-more">
+									<a href="javascript:void(0);" class="add-clinic"><i class="fa fa-plus-circle"></i> Add More</a>
+								</div>
+							</div>
+							<div class="col-12 col-md-4">
+								<div class="form-group">
+									<label class="control-label">GST</label>
+									<input type="text" class="form-control" id="ClincGST">
+								</div>
+							</div>
+							
 							
 						</div>
-						<br><br>
-						<div class="col-md-6">
-											<div class="form-group">
-												<label>Clinic Name</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-						<div class="col-md-6">
-											<div class="form-group">
-												<label>Clinic Address</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-						
-						<br>
-										<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label class="control-label">Alternate Phone</label>
-												<input type="text" class="form-control">
-											</div>
-											<div class="add-more">
-										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
-									</div>
-										</div>
-						
-						<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label class="control-label">Alternate Phone</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-12 col-md-4">
-											<div class="form-group">
-												<label class="control-label">Alternate Phone</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										
-										<div class="col-12 col-md-4">
-											<div class="form-group"><br><br>
-												<label class="control-label">Add amount</label>
-												<input type="text" class="form-control">
-											</div>
-											
-											<div class="add-more">
-										<a href="javascript:void(0);" class="add-experience"><i class="fa fa-plus-circle"></i> Add More</a>
-									</div>
-										</div>
-										<div class="col-12 col-md-4">
-											<div class="form-group"><br><br>
-												<label class="control-label">GST</label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
 						
 						
+									
+								
 						<div class="col-12">
 							<br><br>
 							<h4 class="card-title">Services and specialization</h4>
@@ -802,31 +934,29 @@
 										<input type="text" data-role="tagsinput" class="input-tags form-control" placeholder="Enter Services" name="services" value="Tooth cleaning " id="services">
 										<small class="form-text text-muted">Note : Type &amp; Press enter to add new services</small>
 									</div> 
+
 									<div class="form-group mb-0">
 										<label>Specialization </label>
 										<input class="input-tags form-control" type="text" data-role="tagsinput" placeholder="Enter Specialization" name="specialist" value="Children Care,Dental Care" id="specialist">
 										<small class="form-text text-muted">Note : Type &amp; Press  enter to add new specialization</small>
 									</div> 
 						</div>
+
 						
-				  </div>
-					<div class="button-row d-flex mt-4">
+				  	<div class="button-row d-flex mt-4">
                     <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
-                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                    <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next" onclick="saveClinicHospital()">Next3</button>
                   </div>
 					
 				</div>
               </div>
-				
-				
-				
-				
-				
-				
-				
-				<div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
-                <h3 class="multisteps-form__title" style="padding:15px;">Experience</h3>
-                <div class="multisteps-form__content">
+			<!--Section 2 : Clinic Info End -->	
+			
+			<!--Section 3 : Experience Start-->
+			<!--Add errorResolve1 class as shown below-->
+			<div class="multisteps-form__panel rounded bg-white errorResolve1" data-animation="scaleIn">
+            <h3 class="multisteps-form__title" style="padding:15px;">Experience</h3>
+            <div class="multisteps-form__content">
 					
 					<h4 class="card-title" style="padding:15px;">Education</h4>
 									<div class="education-info" style="padding:15px;">
@@ -836,19 +966,19 @@
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>Degree</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" id="degreeID"/>
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>College/Institute</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" id="collegeID"/>
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>Year of Completion</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" id="yocID"/>
 														</div> 
 													</div>
 												
@@ -859,12 +989,9 @@
 										<a href="javascript:void(0);" class="add-education"><i class="fa fa-plus-circle"></i> Add More</a>
 									</div>
 					
-									<br><br>
-                  
-					
-											<div class="form-group" style="padding-left:15px; padding-right:15px">
+										<div class="form-group" style="padding-left:15px; padding-right:15px">
 												<label>Certificate images</label>
-												<form action="#" class="dropzone"></form>
+												<from  class="dropzone" id="dropzone-from"></from>
 											</div>
 
 											<div class="upload-wrap" style="padding-left:15px;">
@@ -876,12 +1003,8 @@
 													<img src="assets/img/features/feature-02.jpg" alt="Upload Image">
 													<a href="javascript:void(0);" class="btn btn-icon btn-danger btn-sm"><i class="far fa-trash-alt"></i></a>
 												</div>
-											</div><br><br>
-
-						
-					
-					
-					
+											</div>
+						<br><br>
 					
 									<div class="experience-info" style="padding-left:15px; padding-right:15px">
 										<div class="row form-row experience-cont">
@@ -890,25 +1013,25 @@
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>Hospital Name</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" id="hospital_name">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>Start year</label>
-															<input type="text" class="form-control" placeholder="yyyy">
+															<input type="text" class="form-control" placeholder="yyyy" id="start_date" >
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>End year / till date</label>
-															<input type="text" class="form-control" placeholder="yyyy">
+															<input type="text" class="form-control" placeholder="yyyy" id="end_date">
 														</div> 
 													</div>
 													<div class="col-12 col-md-6 col-lg-4">
 														<div class="form-group">
 															<label>Designation</label>
-															<input type="text" class="form-control">
+															<input type="text" class="form-control" id="hospital_designation">
 														</div> 
 													</div>
 										
@@ -931,13 +1054,13 @@
 											<div class="col-12 col-md-5">
 												<div class="form-group">
 													<label>Awards</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" id="awards_name">
 												</div> 
 											</div>
 											<div class="col-12 col-md-5">
 												<div class="form-group">
 													<label>Year</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" id="awards_year">
 												</div> 
 											</div>
 										</div>
@@ -945,24 +1068,15 @@
 									<div class="add-more">
 										<a href="javascript:void(0);" class="add-award"><i class="fa fa-plus-circle"></i> Add More</a>
 									</div>
-					
-					
-					
-					
-                  <div class="button-row d-flex mt-4">
+					<div class="button-row d-flex mt-4">
                     <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
-                     <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                     <button id="submit-certificates" class="btn btn-primary ml-auto js-btn-next" type="button" title="Next" onclick="saveEducationInfo()">Next4</button>
                   </div>
                 </div>
               </div>
 
-				
-				
-				
-				
-				
-				
-              <div class="multisteps-form__panel rounded bg-white" data-animation="scaleIn">
+			  <!--Add errorResolve1 class as shown below-->
+              <div class="multisteps-form__panel rounded bg-white errorResolve2" data-animation="scaleIn">
                 <h3 class="multisteps-form__title" style="padding-left:15px; padding-right:15px">Confirm</h3><br>
                 <div class="multisteps-form__content" style="padding-left:15px; padding-right:15px">
                   
@@ -971,7 +1085,7 @@
 											<div class="col-12 col-md-10 col-lg-5">
 												<div class="form-group">
 													<label>Memberships</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" id="membership_value">
 												</div> 
 											</div>
 										</div>
@@ -987,13 +1101,13 @@
 											<div class="col-12 col-md-5">
 												<div class="form-group">
 													<label>Registration no.</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" id="registeration_no">
 												</div> 
 											</div>
 											<div class="col-12 col-md-5">
 												<div class="form-group">
 													<label>Year</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" id="registeration_year">
 												</div> 
 											</div>
 										</div>
@@ -1006,7 +1120,7 @@
 					
 											<div class="form-group">
 												<label>Upload Files</label>
-												<form action="#" class="dropzone"></form>
+												<!-- <form action="#" class="dropzone"></form> -->
 											</div>
 											<div class="upload-wrap">
 												<div class="upload-images">
@@ -1022,7 +1136,7 @@
 					
                   <div class="button-row d-flex mt-4">
                     <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
-                    <button class="btn btn-success ml-auto" type="button" title="Send">Submit</button>
+                    <button class="btn btn-success ml-auto" type="button" title="Send" onclick="saveMembership()">Submit</button>
                   </div>
                 </div>
               </div>
@@ -1211,9 +1325,10 @@
 		<script src="assets/plugins/select2/js/select2.min.js"></script>
 		
 		<script src="assets/plugins/select2/js/select2.min.js"></script>
-		<script src="assets/plugins/dropzone/dropzone.min.js"></script>
+		<!-- <script src="assets/plugins/dropzone/dropzone.min.js"></script> -->
 		
 		<script src="assets/plugins/dropzone/dropzone.min.js"></script>
+		<!-- <script src='assets/js/dropzone.js'></script> -->
 		<script src="assets/js/moment.min.js"></script>
 		<script src="assets/js/moment.min.js"></script>
 		
@@ -1223,260 +1338,1265 @@
 		
 		<script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
 		<script src="assets/js/profile-settings.js"></script>
-		
-		<script src="assets/js/profile-settings.js"></script>
-		<script src="assets/js/script.js"></script>
-		
+						
 		<script src="assets/js/script.js"></script>
 		<script src="assets/js/wizard.js"></script>
 		
-		
-		
-		<script src="assets/js/wizard.js"></script><script>
+		<script type="text/javascript">
+		    var Data = []
+		    Dropzone.options.dropzoneFrom = {
+				autoProcessQueue: false,
+				acceptedFiles:".png,.jpg,.gif,.bmp,.jpeg",
+				url: 'upload',
+				init: function() {
+					var submit = document.getElementById("submit-certificates");
+					myDropzone = this;
+					submit.addEventListener("click", function(){
+						myDropzone.processQueue();
+					});
+					this.on('addedfile', function(file) {
+                     if (file.accepted !== false) {
+						 console.log(file);
+						 console.log(file["dataURL"]);
+						 console.log(this.getAcceptedFiles());
+						 console.log(this.getQueuedFiles());
+						 console.log(this.getUploadingFiles());
+						 //myDropzone.processQueue();
+                //      if (file.width < 1024 || file.height < 768) {
+                //       console.log(file);
+                //       }
+                //   else {
+				// 	 console.log(file);
+                //    }
+               }
+			  });
+			  this.on('thumbnail', function(file) {
+                     if (file.dataURL !== false) {
+						 console.log(file);
+						 console.log('file dataURL', file.dataURL);
+						 console.log('file path', file.fullPath)
+						 Data.push({name: file.name, imagebase64: file.dataURL})
+						 console.log("Data Array", Data);
+               }
+			  });
+			this.on("sending", function(file, xhr, data) {
+				//console.log('file comming', file);
+				//console.log('fileFullpath', file.fullPath);
+				var image = new Image();
+                image.src = file.dataURL;
+                document.body.appendChild(image);
+              if(file.fullPath){
+                 data.append("fullPath", file.fullPath);
+				}
+				data.append("data", Data);
+				console.log('Data', data)
+              });
+
+					this.on("complete", function() {
+						if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0)
+						{
+							var _this = this;
+							_this.removeAllFiles();
+						}
+					})
+				}
+			}
+		</script>
+		<script>
+			
 			function designation()
 			{
 				var des = document.getElementById('designa');
 				//$('#designate').append('<p>' +aaa.value+'</p>');
 				$('#designate').html('<p>' +des.value+'</p>');
 			}
-			function save()
+
+			//Save User Info:
+			function saveUserInfo()
 			{
-				
+			//alert("Running");
 			var gend = document.getElementById("gendertype");
-			//var strGender = gend.options[gend.selectedIndex].value;
-			//var utype = document.getElementById("profiletype");
-			//var strUType = utype.options[utype.selectedIndex].value;
-		
-			var data1 = {
-						Firstname: $('.firstname').val(),
-						Lastname: $('.lastname').val(),
+			var strGender = gend.options[gend.selectedIndex].value;
+			var DateOB= $('#dob').val();
+			
+			function changeDateFormat(inputDate){  
+    			var splitDate = inputDate.split('/');
+    				if(splitDate.count == 0){
+        				return null;
+    					}
+  				var year = splitDate[2];
+    			var month = splitDate[1];
+    			var day = splitDate[0]; 
+
+    			return month + '/' + day + '/' + year;
+				}
+				var newDate = changeDateFormat(DateOB);
+
+				var userInfoData = {
+						Firstname: firstname,
+						Lastname: lastname,
 						Gender: strGender,
-						EmailId1: $('.email').val(),
-						Mobile1 : $('.mobile').val(),
-						DOB: $('.id_proof').val(),
-						DoctorDesignationDisplay: $('.desired_designation').val(),
-						DoctorProfileHandById: $('.id_proof').val(),
+						EmailId1: emailid,
+						Mobile1 : mobileid,
+						DOB:newDate,
+						// $('#dob').val(),
+						DoctorDesignationDisplay: $('#designa').val(),
+						DoctorProfileHandById: $('#profilehandledby').val()
+					};
+					console.log("Basic Info Data :"+JSON.stringify(userInfoData));
+			$.ajax({
+				url: "http://localhost/rocketmed/api/Doctor/"+docIDGlobal+"?page=1",
+				method:"PUT",
+				async: false,
+				contentType: 'application/json; charset=utf-8',
+				data:JSON.stringify(userInfoData),
+				timeout: 36000, 
+				headers: { "Authorization": authToken},
+			
+				error: function(xhr, status, error) {
+					  var err = eval("(" + xhr.responseText + ")");
+					  console.log(err.Message);
+  					alert("Error: Pease Try Again with Valid User Info"+ authToken );
+				
+				},
+				success: function(response){
+						console.log("UserInfo Response:"+response);
+						alert('Doctors Basic Info Updated Successfully !!');
+					}
+			});
+			}
+			
+			//Save Clinic/ Hospital Checkbox
+			function saveClinicHospital()
+			{
+				var hosId,clinID;
+				if ($('#hospitalid').is(":checked"))
+					{	hosId = 1;	}
+					else
+					{		hosId = 0;		}
+					if ($('#clinicid').is(":checked"))
+					{	clinID = 1;		}
+					else
+					{	clinID = 0;	
+				}
+
+				var clinicHospdata ={
+					LinkedToClinic: clinID,
+						LinkedToHosp: hosId
+				};
+
+				console.log("Basic Info Data :"+JSON.stringify(clinicHospdata));
+			$.ajax({
+				url: "http://localhost/rocketmed/api/Doctor/"+docIDGlobal+"?page=3",
+				method:"PUT",
+				async: false,
+				contentType: 'application/json; charset=utf-8',
+				data:JSON.stringify(clinicHospdata),
+				timeout: 36000, 
+				headers: { "Authorization": authToken },
+				error: function(xhr, status, error) {
+  					var err = eval("(" + xhr.responseText + ")");
+					console.log("Ajax call atleast happened");
+					console.log(err.Message);
+  					alert("Error: Pease Try Again with Valid Hospital/Clinic Checkbox");
+				   
+				},
+				success: function(response){
+						console.log(response);
+						console.log("Your ID : "+response);
+						alert('Doctors Hspital/Clinic Info Updated Successfully !!');
+						}
+			});
+			saveClinicInfo();
+			saveServices();
+			saveSpecialization();
+			}
+
+
+			// EducationInfo
+			/*function saveEducationInfo() {
+				var degree = document.getElementById("degreeID");
+				var collage = document.getElementById("collegeID");
+				var yearCompletion = document.getElementById("yocID");
+				var data= {
+					"degree": degree.value,
+					"collage": collage.value,
+					"yoc": yearCompletion.value
+				}
+				console.log("data1 ",data);
+
+				/*
+				First Three data
+				var settings = {
+ "url": "https://localhost:44334/api/DocEdu",
+ "method": "POST",
+ "timeout": 0,
+ "headers": {
+ "Content-Type": "application/json"
+ },
+ "data": JSON.stringify([{"DoctorNo":"4","Degree":"Degree 1","College
+Name":"College 1","Completedyear":"2012","orderby":"1"},{"DoctorNo":"4
+","Degree":"Degree 2","CollegeName":"College 2","Completedyear":"2008"
+,"orderby":"2"},{"DoctorNo":"4","Degree":"Degree 3","CollegeName":"Col
+lege 3","Completedyear":"2006","orderby":"3"}]),
+};
+$.ajax(settings).done(function (response) {
+ console.log(response);
+});
+				*/
+
+	//   var images = document.getElementsByClassName("dropzone");
+	//   var myDropzone = document.getElementById("my-dropzone");
+	//   console.log("images", images);
+	//   console.log('m', myDropzone);
+	//   Dropzone.options.myDropzone = {                        
+    //         // Prevents Dropzone from uploading dropped files immediately
+    //            addRemoveLinks: true,
+    //            autoProcessQueue: false,
+    //            maxFilesize:100,
+    //            parallelUploads:5, 
+    //            maxFiles:5,                          
+    //            acceptedFiles: "image/*,.pdf, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.openxmlformats-officedocument.spreadsheetml.template, application/vnd.openxmlformats-officedocument.presentationml.template, application/vnd.openxmlformats-officedocument.presentationml.slideshow, application/vnd.openxmlformats-officedocument.presentationml.presentation, application/vnd.openxmlformats-officedocument.presentationml.slide, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/vnd.openxmlformats-officedocument.wordprocessingml.template, application/vnd.ms-excel.addin.macroEnabled.12, application/vnd.ms-excel.sheet.binary.macroEnabled.12,text/rtf,text/plain,audio/*,video/*,.csv,.doc,.xls,.ppt,application/vnd.ms-powerpoint,.pptx",                        
+    //            init: function() {
+    //                var submitButton = document.querySelector("#submit-certificates"),
+    //                    myDropzone = this; // closure
+
+    //                    submitButton.addEventListener("click", function() {
+	// 					   console.log(myDropzone);
+    //                        //myDropzone.processQueue(); // Tell Dropzone to process all queued files
+    //                    });       
+    //           }
+	//     };
+
+				/*
+				Certificates
+				var form = new FormData();
+form.append("", fileInput.files[0], "/C:/Users/ambkum01/Desktop/MediaN
+urture/image/certificate1.jpg");
+form.append("", fileInput.files[0], "/C:/Users/ambkum01/Desktop/MediaN
+urture/image/certificate2.jpg");
+var settings = {
+ "url": "https://localhost:44334/api/UpFiles/5?usertype=doc&doctype=2
+",
+ "method": "PUT",
+ "timeout": 0,
+ "processData": false,
+ "mimeType": "multipart/form-data",
+ "contentType": false,
+ "data": form
+};
+$.ajax(settings).done(function (response) {
+ console.log(response);
+});
+
+				*/
+
+
+		
+
+			function handleupload() {
+				console.log(document.getElementById("uploadBox"))
+				if(document.getElementById("uploadBox").value != "") {
+					console.log('data');
+					console.log(document.getElementById("uploadBox"))
+}
+			}
+
+			//Save Contact Info
+			function saveContactInfo()
+			{
+			
+			var proofname = document.getElementById("proofname");
+			var proofname = proofname.options[proofname.selectedIndex].value;
+			var country = document.getElementById("country");
+			var country = country.options[country.selectedIndex].value;
+           	var state = document.getElementById("state");
+			var state = state .options[state.selectedIndex].value;
+			var city = document.getElementById("city");
+			var city = city.options[city.selectedIndex].value;
+			
+			var data1 = {
+						
 						Phone1: $('#phone1').val(),
 						Phone2: $('#phone2').val(),
 						Phone3: $('#phone3').val(),
 						Biography: $('#biography').val(),
 						AddressLine1: $('#address_1').val(),
-						AddressLine2: $('#address_1').val(),
-						CityId: $('.id_proof').val(),
-						StateId: $('.id_proof').val(),
+						AddressLine2: $('#address_2').val(),
+						CityId: $('#city').val(),
+						StateId: $('#state').val(),
 						Zipcode: $('#postalcode').val(),
-						CountryId: $('.id_proof').val(),
-						GovtproofId: $('.ID_proof_number').val(),
-						GovtproofNo: $('.id_proof').val(),
-						LinkedToClinic: $('.id_proof').val(),
+						CountryId: $('#country').val(),
+						GovtproofId: $('#proofname').val(),
+						GovtproofNo: $('#proofno').val()
 					   };
 
 					   
-					   
-			/*var data1 ={"Firstname":"Remember22","Lastname":"Remember22","Gender":"Female","Mobile1":"78945655",
-			"EmailId1":"remember2@media.com","DOB":"03/07/1985","DoctorProfileHandById":"1",
-			"Phone1":"4444444444","Phone2":"5555555555","Phone3":"666666666666",
-			"Biography":"This is a test Biography for sencond record.",
-			"AddressLine1":"Addr Line 3, Test 4","AddressLine2":"Addr Line 4, Test 4",
-			"CityId":"3","StateId":"12","Zipcode":"560045","CountryId":"1",
-			"GovtproofId":"2","GovtproofNo":"P3333333",
-			"DoctorDesignationDisplay":"MD (Surgery)",
-			"LinkedToClinic":"1","LinkedToHosp":"1"};*/
-				
+			// alert(JSON.stringify(data1));
+				console.log("Basic Info Data :"+JSON.stringify(data1));
 			$.ajax({
-				url: "http://localhost/rocketmed/api/Doctor/"+docIDGlobal,
+				url: "http://localhost/rocketmed/api/Doctor/"+docIDGlobal+"?page=2",
 				method:"PUT",
 				async: false,
 				contentType: 'application/json; charset=utf-8',
 				data:JSON.stringify(data1),
 				timeout: 36000, 
-				error: function(){
-					alert("Error: Mail ID/ Phone No. Already Registerd. Pease Try Again");
-					if (response == null)
-						{
-						document.getElementById("register_failed").innerHTML = "Registration Failed. Pease Try Again"; 
-						}
-						else if (responseR.status == "400")
-						{
-							document.getElementById("register_failed").innerHTML = "Mail ID/ Phone No. Already Registerd. Pease Try Again"; 
-						}
+				headers: { "Authorization": authToken	 },
+				error: function(xhr, status, error) {
+  					var err = eval("(" + xhr.responseText + ")");
+					  console.log('ajax call atleasy happened');
+					  console.log(err.Message);
+  				//	alert(err.Message);
+				//	alert(status);
+					alert("Error: Pease Try Again with Valid Contact Details");
+
+					// if (response == null)
+					// 	{
+					// 	document.getElementById("register_failed").innerHTML = "Registration Failed. Pease Try Again"; 
+					// 	}
+					// 	else if (responseR.status == "400")
+					// 	{
+					// 		document.getElementById("register_failed").innerHTML = "Mail ID/ Phone No. Already Registerd. Pease Try Again"; 
+					// 	}
+					// 	else{
+					// 		console.log("Your ID : "+response);
+					// 	alert('Record Updated Successfully Inside Error');
+					// 	//baseURL=document.location.href;
+					// 	//alert(baseURL);
+					// 	//window.open('doctor-dashboard.html', "_self");
+					// 	}
 				},
 				success: function(response){
 						console.log(response);
 						console.log("Your ID : "+response);
-						alert('Record Updated Successfully');
+						alert('Doctors Contact Info Updated Successfully !!');
 						//baseURL=document.location.href;
 						//alert(baseURL);
-						window.open('doctor-dashboard.html', "_self");
+						//window.open('doctor-dashboard.html', "_self");
 						
 						//document.location.href = "./login.html" , target="_blank";
 						}
 			});
+			saveProofImages();
 			}
 			
-			</script><script>
-			function designation()
+			//Save Proof documents
+			function saveProofImages()
 			{
-				var des = document.getElementById('designa');
-				//$('#designate').append('<p>' +aaa.value+'</p>');
-				$('#designate').html('<p>' +des.value+'</p>');
+				//ToDo: To be implemented
 			}
-			function save()
+
+
+			//Save Clinic Info
+			function saveClinicInfo()
 			{
+			console.log('call happening 1')
+			// var clinicNme = document.getElementById("clinicName").value;
+			// var clinicNme = clinicNme.options[clinicNme.selectedIndex].value;
+			// var clinicAddr = document.getElementById("clinicAddress");
+			// var clinicAddr = clinicAddr.options[clinicAddr.selectedIndex].value;
+			// var clinic = document.getElementById("clinicAdd");
+			// var clinic = clinic.options[clinic.selectedIndex].value;
+			// var clinic = document.getElementById("clinic");
+			// var clinic = clinic.options[clinic.selectedIndex].value;
+			// var clinic = document.getElementById("clinic");
+			// var clinic = clinic.options[clinic.selectedIndex].value;
+			// var clinic = document.getElementById("clinic");
+			// var clinic = clinic.options[clinic.selectedIndex].value;
+
+
+
+			//Hardcoded, should move to profile-settings.js file and implement with counter	
+				var data2 = {
+					
+					
+				/*	"data": JSON.stringify(
+					{"ClinicId":"9",
+					"ClinicName":"Arogya Clinic T ",
+					"ClinicAddress":"Vijaya Bank Layout T, 560067",
+					"AlternatePhone1":"91 1111111",
+					"AlternatePhone2":"8222222222",
+					"AlternatePhone3":"7333333333" ,
+					"Amount":"1000",
+					"GST":"180",
+					"OrderBy":"3"}),*/
+
+					ClinicId: $('#ClincName').val(),
+					ClinicName: $('#ClincName').val(),
+					ClinicAddress: $('#ClincAdd ').val(),
+					AlternatePhone1: $('#ClincPhone1 ').val(),
+					AlternatePhone2: $('#ClincPhone2 ').val(),
+					AlternatePhone3: $('#ClincPhone3 ').val(),
+					Amount:$('#ClincAmount').val(),
+				    GST: $('#ClincGST').val(),
+					OrderBy:"3" //Look Into UI Add more to update
+					
+
+					/*ClinicId:"9",
+					ClinicName:"Arogya Clinic T",
+					ClinicAddress:"7",
+					AlternatePhone1:"911111111",
+					AlternatePhone2:"8222222222",
+					AlternatePhone3:"7333333333",
+					Amount:"1000",
+					GST:"180",
+					OrderBy:"3"*/
+
+				}
+
 				
-			var gend = document.getElementById("gendertype");
-			//var strGender = gend.options[gend.selectedIndex].value;
-			//var utype = document.getElementById("profiletype");
-			//var strUType = utype.options[utype.selectedIndex].value;
+				console.log("Clinic Info Json:"+JSON.stringify(data2));
+				
+				/*
+				"data": JSON.stringify({"ClinicId":"9","ClinicName":"Arogya Clinic T",
+				"ClinicAddress":"Vijaya Bank Layout T, 560067","AlternatePhone1":"911111111",
+				"AlternatePhone2":"8222222222","AlternatePhone3":"7333333333","Amount":"1000","GST":"180","OrderBy":"3"})};
+			*/
+			$.ajax({
+				url: "http://localhost/rocketmed/api/ClinicInfo/"+docIDGlobal,
+				method:"PUT",
+				async: false,
+				contentType: 'application/json; charset=utf-8',
+				data:JSON.stringify(data2),
+				timeout: 36000, 
+				headers: { "Authorization": authToken },
+				error: function(xhr, status, error) {
+  					var err = eval("(" + xhr.responseText + ")");
+  					console.log("Error Message"+err.Message);	
+					console.log('ajax call happening 1')	
+					alert("Error saving Clinic Info. Pease Try Again");
+					
+				},
+				success: function(response1){
+						console.log(response1);
+						console.log("Clinic Info Updated : "+response1);
+						alert('Clinic/Hospital Info Updated Successfully !!');
+						}
+			});
+			
+			}
+
+			//Save Clinic Specializations Details
+		function saveSpecialization()
+		{	let specData={"DoctorNo":"4","SpecializationName":"Spec 13","OrderBy":"44"};
+			specData = JSON.stringify(specData);
+			var d2,d1;
+			var specializations_All = document.getElementById("specialist").value;
+			var str_array = specializations_All.split(',');
+			
+			// {"DoctorNo":"00000004","ServiceName":"Service 3","OrderBy":"1"},{"DoctorNo":"00000004","ServiceName":"Service 4","OrderBy":"2"}
+
+			if(str_array.length == 1)
+			{
+				specData= {DoctorNo:docIDGlobal,SpecializationName:specializations_All,OrderBy:"1"};
+				specData = JSON.stringify(specData);
+			}
+			if(str_array.length>=2)
+			{
+				for(var i = 0; i < str_array.length; i++) {
+   					// Trim the excess whitespace.
+   					//str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");					
+					d2= {DoctorNo:docIDGlobal,SpecializationName:str_array[i],OrderBy:i};
+					specData += ","+ JSON.stringify(d2)  ;
+				}			
+				}
+				console.log("["+specData+"]");
+				$.ajax({
+					url: "http://localhost/rocketmed/api/DocSpec",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+specData+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Specialization Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Clinic Specializations Info Updated !! ");
+							alert('Clinic Specialization Info Updated Successfully !!');
+							}
+				});
+		}
 		
-			var data1 = {
-						Firstname: $('.firstname').val(),
-						Lastname: $('.lastname').val(),
-						Gender: strGender,
-						EmailId1: $('.email').val(),
-						Mobile1 : $('.mobile').val(),
-						DOB: $('.id_proof').val(),
-						DoctorDesignationDisplay: $('.desired_designation').val(),
-						DoctorProfileHandById: $('.id_proof').val(),
-						Phone1: $('#phone1').val(),
-						Phone2: $('#phone2').val(),
-						Phone3: $('#phone3').val(),
-						Biography: $('#biography').val(),
-						AddressLine1: $('#address_1').val(),
-						AddressLine2: $('#address_1').val(),
-						CityId: $('.id_proof').val(),
-						StateId: $('.id_proof').val(),
-						Zipcode: $('#postalcode').val(),
-						CountryId: $('.id_proof').val(),
-						GovtproofId: $('.ID_proof_number').val(),
-						GovtproofNo: $('.id_proof').val(),
-						LinkedToClinic: $('.id_proof').val(),
-					   };
-
-					   
-					   
-			/*var data1 ={"Firstname":"Remember22","Lastname":"Remember22","Gender":"Female","Mobile1":"78945655",
-			"EmailId1":"remember2@media.com","DOB":"03/07/1985","DoctorProfileHandById":"1",
-			"Phone1":"4444444444","Phone2":"5555555555","Phone3":"666666666666",
-			"Biography":"This is a test Biography for sencond record.",
-			"AddressLine1":"Addr Line 3, Test 4","AddressLine2":"Addr Line 4, Test 4",
-			"CityId":"3","StateId":"12","Zipcode":"560045","CountryId":"1",
-			"GovtproofId":"2","GovtproofNo":"P3333333",
-			"DoctorDesignationDisplay":"MD (Surgery)",
-			"LinkedToClinic":"1","LinkedToHosp":"1"};*/
-				
-			$.ajax({
-				url: "http://localhost/rocketmed/api/Doctor/"+docIDGlobal,
-				method:"PUT",
-				async: false,
-				contentType: 'application/json; charset=utf-8',
-				data:JSON.stringify(data1),
-				timeout: 36000, 
-				error: function(){
-					alert("Error: Mail ID/ Phone No. Already Registerd. Pease Try Again");
-					if (response == null)
-						{
-						document.getElementById("register_failed").innerHTML = "Registration Failed. Pease Try Again"; 
-						}
-						else if (responseR.status == "400")
-						{
-							document.getElementById("register_failed").innerHTML = "Mail ID/ Phone No. Already Registerd. Pease Try Again"; 
-						}
-				},
-				success: function(response){
-						console.log(response);
-						console.log("Your ID : "+response);
-						alert('Record Updated Successfully');
-						//baseURL=document.location.href;
-						//alert(baseURL);
-						window.open('doctor-dashboard.html', "_self");
-						
-						//document.location.href = "./login.html" , target="_blank";
-						}
-			});
-			}
+		function test()
+		{
+			alert(1);
+		}
+		//Save CLinic Services
+		function saveServices()
+		{	let specData={"DoctorNo":"4","ServiceName":"Dummy Service","OrderBy":"44"};
+			specData = JSON.stringify(specData);
+			var d2,d1;
+			var specializations_All = document.getElementById("services").value;
+			var str_array = specializations_All.split(',');
 			
-			</script><script>
-			function designation()
+			// {"DoctorNo":"00000004","ServiceName":"Service 3","OrderBy":"1"},{"DoctorNo":"00000004","ServiceName":"Service 4","OrderBy":"2"}
+
+			if(str_array.length == 1)
 			{
-				var des = document.getElementById('designa');
-				//$('#designate').append('<p>' +aaa.value+'</p>');
-				$('#designate').html('<p>' +des.value+'</p>');
+				specData= {DoctorNo:docIDGlobal,ServiceName:specializations_All,OrderBy:"1"};
+				specData = JSON.stringify(specData);
 			}
-			function save()
+			if(str_array.length>=2)
 			{
-				
-			var gend = document.getElementById("gendertype");
-			//var strGender = gend.options[gend.selectedIndex].value;
-			//var utype = document.getElementById("profiletype");
-			//var strUType = utype.options[utype.selectedIndex].value;
+				for(var i = 0; i < str_array.length; i++) {
+   					// Trim the excess whitespace.
+   					//str_array[i] = str_array[i].replace(/^\s*/, "").replace(/\s*$/, "");
+
+					d2= {DoctorNo:docIDGlobal,ServiceName:str_array[i],OrderBy:i};
+					specData += ","+ JSON.stringify(d2)  ;
+				}
+				}
+				console.log("["+specData+"]");
+				$.ajax({
+					url: "http://localhost/rocketmed/api/DocSer",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+specData+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Services Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Clinic Services Info Updated !!");
+							alert('Clinic Services Info Updated Successfully !!');
+							}
+				});
+		}	
+			</script>
+
+
+		   <script> //Script Transfer from old profile-settings.js********
+		   
+		   /*
+Author       : Dreamguys
+Template Name: Rocket Medecin - Bootstrap Template
+Version      : 1.0
+*/
+var educationCounter = 1;
+var awardCounter=1;
+var experienceCounter=1;
+var membershipcounter=1;
+var registerCounter=1;
+var hospitalCounter=1;
+
+
+function saveHospexperience(){
+	alert("Save Hospital Experience");
+	/*	Post:
+		{"DoctorNo":"4","Degree":"Degree 1","CollegeName":"College 1","Completedyear":"2012","orderby":"1"},
+		{"DoctorNo":"4","Degree":"Degree 2","CollegeName":"College 2","Completedyear":"2008","orderby":"2"},
+		{"DoctorNo":"4","Degree":"Degree 3","CollegeName":"College 3","Completedyear":"2006","orderby":"3"}
 		
-			var data1 = {
-						Firstname: $('.firstname').val(),
-						Lastname: $('.lastname').val(),
-						Gender: strGender,
-						EmailId1: $('.email').val(),
-						Mobile1 : $('.mobile').val(),
-						DOB: $('.id_proof').val(),
-						DoctorDesignationDisplay: $('.desired_designation').val(),
-						DoctorProfileHandById: $('.id_proof').val(),
-						Phone1: $('#phone1').val(),
-						Phone2: $('#phone2').val(),
-						Phone3: $('#phone3').val(),
-						Biography: $('#biography').val(),
-						AddressLine1: $('#address_1').val(),
-						AddressLine2: $('#address_1').val(),
-						CityId: $('.id_proof').val(),
-						StateId: $('.id_proof').val(),
-						Zipcode: $('#postalcode').val(),
-						CountryId: $('.id_proof').val(),
-						GovtproofId: $('.ID_proof_number').val(),
-						GovtproofNo: $('.id_proof').val(),
-						LinkedToClinic: $('.id_proof').val(),
-					   };
+		PUT:
+		{"DoctorEduId":"6","Degree":"Degree 20","CollegeName":"College 20","Completedyear":"2010","orderby":"4"}
+		DoctorNo:"4",Degree:"Degree 2",CollegeName:"College 2",Completedyear:"2008",orderby:"2",
+			DoctorNo:"4",Degree:"Degree 3",CollegeName:"College 3","Completedyear":"2006","orderby":"3"
+		*/
+		//alert(educationCounter);
+		var hospital = document.getElementById("hospital_name").value;
+		var hospitaldesignation = document.getElementById("hospital_designation").value;
+		var Datestart= $('#start_date').val();
+		var Dateend= $('#end_date').val();
+		//var dt = new Date();
 
-					   
-					   
-			/*var data1 ={"Firstname":"Remember22","Lastname":"Remember22","Gender":"Female","Mobile1":"78945655",
-			"EmailId1":"remember2@media.com","DOB":"03/07/1985","DoctorProfileHandById":"1",
-			"Phone1":"4444444444","Phone2":"5555555555","Phone3":"666666666666",
-			"Biography":"This is a test Biography for sencond record.",
-			"AddressLine1":"Addr Line 3, Test 4","AddressLine2":"Addr Line 4, Test 4",
-			"CityId":"3","StateId":"12","Zipcode":"560045","CountryId":"1",
-			"GovtproofId":"2","GovtproofNo":"P3333333",
-			"DoctorDesignationDisplay":"MD (Surgery)",
-			"LinkedToClinic":"1","LinkedToHosp":"1"};*/
-				
-			$.ajax({
-				url: "http://localhost/rocketmed/api/Doctor/"+docIDGlobal,
-				method:"PUT",
-				async: false,
-				contentType: 'application/json; charset=utf-8',
-				data:JSON.stringify(data1),
-				timeout: 36000, 
-				error: function(){
-					alert("Error: Mail ID/ Phone No. Already Registerd. Pease Try Again");
-					if (response == null)
-						{
-						document.getElementById("register_failed").innerHTML = "Registration Failed. Pease Try Again"; 
-						}
-						else if (responseR.status == "400")
-						{
-							document.getElementById("register_failed").innerHTML = "Mail ID/ Phone No. Already Registerd. Pease Try Again"; 
-						}
-				},
-				success: function(response){
-						console.log(response);
-						console.log("Your ID : "+response);
-						alert('Record Updated Successfully');
-						//baseURL=document.location.href;
-						//alert(baseURL);
-						window.open('doctor-dashboard.html', "_self");
-						
-						//document.location.href = "./login.html" , target="_blank";
-						}
-			});
-			}
+
+		
+		/*function changeDateFormat1(inputDate){  
+    			var splitDate = inputDate.split('/');
+    				if(splitDate.count == 0){
+        				return null;
+    					}
+  				var year = splitDate[2];
+    			var month = splitDate[1];
+    			var day = splitDate[0]; 
+
+    			return month + '/' + day + '/' + year;
+				}
+				var Datestart = changeDateFormat1( Datestart );
+
+
+
+				function changeDateFormat2(inputDate){  
+    			var splitDate = inputDate.split('/');
+    				if(splitDate.count == 0){
+        				return null;
+    					}
+  				var year = splitDate[2];
+    			var month = splitDate[1];
+    			var day = split-Date[0]; 
+
+    			return month + '/' + day + '/' + year;
+				}
+				var Dateend = changeDateFormat2( Dateend );
+
+	
+			//alert("docID"+docIDGlobal);
+			*/
 			
-			</script></body>
+		let data11={ DoctorNo:docIDGlobal,Hospname:hospital,WorkFrom:Datestart,WorkTo:Dateend,Designation:hospitaldesignation,Presentworking:"1"};
+		var d12=JSON.stringify(data11);
+		var d13;
+		//console.log(JSON.stringify(data3));
+		if(hospitalCounter >= 2)
+		{	var i;
+			for( i=1;i<hospitalCounter;i++)
+			{	
+				var hospital = document.getElementById("hospital_name" +i).value;
+					var hospitaldesignation = document.getElementById("hospital_designation" +i).value;
+						var Datestart= $('#start_date' +i).val();
+							var Dateend= $('#end_date' +i).val();
+
+				d13  = {DoctorNo:docIDGlobal,Hospname:hospital,WorkFrom:Datestart,WorkTo:Dateend,Designation:hospitaldesignation,Presentworking:"1" };
+				
+				d12 += ","+ JSON.stringify(d13) ;
+				alert(d12.toString());
+			}
+		}
+		console.log("data3: "+d12)
+		//alert(data3);
+		//alert(JSON.stringify(data3));
+		
+			$.ajax({
+				    
+					url:"http://localhost/rocketmed/api/DocExp", 
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+d12+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Save Hospital Experience ");
+							alert('Save Hospital Experience Successfull !!');
+							}
+				});
+
+		
+	}	
+
+
+
+	function saveEducationInfo(){
+	alert("Experience info");
+	/*	Post:
+		{"DoctorNo":"4","Degree":"Degree 1","CollegeName":"College 1","Completedyear":"2012","orderby":"1"},
+		{"DoctorNo":"4","Degree":"Degree 2","CollegeName":"College 2","Completedyear":"2008","orderby":"2"},
+		{"DoctorNo":"4","Degree":"Degree 3","CollegeName":"College 3","Completedyear":"2006","orderby":"3"}
+		
+		PUT:
+		{"DoctorEduId":"6","Degree":"Degree 20","CollegeName":"College 20","Completedyear":"2010","orderby":"4"}
+		DoctorNo:"4",Degree:"Degree 2",CollegeName:"College 2",Completedyear:"2008",orderby:"2",
+			DoctorNo:"4",Degree:"Degree 3",CollegeName:"College 3","Completedyear":"2006","orderby":"3"
+		*/
+		//alert(educationCounter);
+		var degreeID = document.getElementById("degreeID").value;
+		var collegeID = document.getElementById("collegeID").value;
+		var yocID = document.getElementById("yocID").value;
+	
+			//alert("docID"+docIDGlobal);
+		let data3={
+			DoctorNo:docIDGlobal,Degree:degreeID,CollegeName:collegeID,Completedyear:yocID,orderby:"1"
+		};
+		var d1=JSON.stringify(data3);
+		var d2;
+		//console.log(JSON.stringify(data3));
+		if(educationCounter >= 2)
+		{	var i;
+			for( i=1;i<educationCounter;i++)
+			{	
+				var degreeID = document.getElementById("degreeID"+i).value;
+				var collegeID = document.getElementById("collegeID"+i).value;
+				var yocID = document.getElementById("yocID"+i).value;
+				d2  = {DoctorNo:docIDGlobal,Degree:degreeID,CollegeName:collegeID,Completedyear:yocID,orderby:educationCounter};
+				
+				d1 += ","+ JSON.stringify(d2) ;
+				alert(d1.toString());
+			}
+		}
+		console.log("data3: "+d1)
+		//alert(data3);
+		//alert(JSON.stringify(data3));
+		
+			$.ajax({
+					url: "http://localhost/rocketmed/api/DocEdu/",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+d1+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Educcation Info Updated : ");
+							alert('Education Info Updated Successfully !!');
+							}
+				});
+
+		 saveExpCertificates();
+		//saveExpDetails();
+		 saveHospexperience();
+		 saveAwards();		
+	}	
+
+
+
+	function saveExpCertificates()
+	{
+
+		alert("Experience Certificate");
+
+		var degreeID = document.getElementById("degreeID").value;
+		var collegeID = document.getElementById("collegeID").value;
+		var yocID = document.getElementById("yocID").value;
+	
+			//alert("docID"+docIDGlobal);
+		let data3={
+			DoctorNo:docIDGlobal,Degree:degreeID,CollegeName:collegeID,Completedyear:yocID,orderby:"1"
+		};
+		var d1=JSON.stringify(data3);
+		var d2;
+		//console.log(JSON.stringify(data3));
+		if(educationCounter >= 2)
+		{	var i;
+			for( i=1;i<educationCounter;i++)
+			{	
+				var degreeID = document.getElementById("degreeID"+i).value;
+				var collegeID = document.getElementById("collegeID"+i).value;
+				var yocID = document.getElementById("yocID"+i).value;
+				d2  = {DoctorNo:docIDGlobal,Degree:degreeID,CollegeName:collegeID,Completedyear:yocID,orderby:educationCounter};
+				
+				d1 += ","+ JSON.stringify(d2) ;
+				alert(d1.toString());
+			}
+		}
+		console.log("data3: "+d1)
+		//alert(data3);
+		//alert(JSON.stringify(data3));
+		
+			$.ajax({
+					url: "http://localhost/rocketmed/api/DocEdu/",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+d1+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Education Info Updated : ");
+							alert('Education Info Updated Successfully !!');
+							}
+				});
+		
+	}
+
+		function saveExpDetails()
+		{
+			
+		alert("Save Experience");
+        var awards = document.getElementById("awards_name").value;
+		var year  = document.getElementById("awards_year").value;
+
+
+		//alert("docID"+docIDGlobal);
+		let data4={
+			DoctorNo:docIDGlobal,AwardName:awards,year:year,orderby:"1"
+		};
+
+
+		var d4=JSON.stringify(data4);
+		var d5;
+		//console.log(JSON.stringify(data3));
+		if(awardCounter >= 2)
+		{	var i;
+			for( i=1;i<awardCounter;i++)
+			{	
+				var  awards = document.getElementById("awards_name"+i).value;
+				var year = document.getElementById("awards_year"+i).value;
+			
+				d5  = {DoctorNo:docIDGlobal,AwardName:awards,year:year,orderby:awardCounter};
+				
+				d4 += ","+ JSON.stringify(d5) ;
+				alert(d4.toString());
+			}
+		}
+		console.log("data4: "+d4)
+		//alert(data3);
+		//alert(JSON.stringify(data3));
+		
+			$.ajax({
+					url: "http://localhost/rocketmed/api/DocAward/",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+d4+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("award Info Updated : ");
+							alert('award Info Updated Successfully !!');
+							}
+				});
+	
+		}
+
+		
+		
+		
+		
+		
+		
+		function saveAwards()
+		{
+
+		alert("awards");
+        var awards = document.getElementById("awards_name").value;
+		var year  = document.getElementById("awards_year").value;
+
+
+		//alert("docID"+docIDGlobal);
+		let data4={
+			DoctorNo:docIDGlobal,AwardName:awards,year:year,orderby:"1"
+		};
+
+
+		var d4=JSON.stringify(data4);
+		var d5;
+		//console.log(JSON.stringify(data3));
+		if(awardCounter >= 2)
+		{	var i;
+			for( i=1;i<awardCounter;i++)
+			{	
+				var  awards = document.getElementById("awards_name"+i).value;
+				var year = document.getElementById("awards_year"+i).value;
+			
+				d5  = {DoctorNo:docIDGlobal,AwardName:awards,year:year,orderby:awardCounter};
+				
+				d4 += ","+ JSON.stringify(d5) ;
+				alert(d4.toString());
+			}
+		}
+		console.log("data4: "+d4)
+		//alert(data3);
+		//alert(JSON.stringify(data3));
+		
+			$.ajax({
+					url: "http://localhost/rocketmed/api/DocAward/",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+d4+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Clinic Info. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("award Info Updated : ");
+							alert('award Info Updated Successfully !!');
+							}
+				});
+	
+
+	
+        
+
+
+		}
+
+
+
+
+
+	
+
+// Confirmation Page: 
+function saveMembership()
+	{
+		
+		alert("Membership");
+        var membership = document.getElementById("membership_value").value;
+
+
+
+		//alert("docID"+docIDGlobal);
+		let data5={
+			DoctorNo:docIDGlobal,MemberShipDtlsName:membership,orderby:"1"
+	     };
+
+
+		var d6=JSON.stringify(data5);
+		var d7;
+		//console.log(JSON.stringify(data3));
+		if(membershipcounter >= 2)
+		{	var i;
+			for( i=1;i<membershipcounter;i++)
+			{	
+				var  membership = document.getElementById("membership_value"+i).value;
+				
+
+				d7  = {DoctorNo:docIDGlobal,MemberShipDtlsName:membership,orderby:membershipcounter};
+				
+				d6 += ","+ JSON.stringify(d7) ;
+				alert(d6.toString());
+			}
+		}
+		console.log("data5: "+d6)
+		//alert(data3);
+		//alert(JSON.stringify(data3));
+		
+			$.ajax({
+					url: "http://localhost/rocketmed/api/DocMem/",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+d6+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Membership. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Membership Info Updated : ");
+							alert('Membership Info Updated Successfully !!');
+							}
+				});
+	
+
+		savePracticeReg();
+		//savePracticeDocuments();
+
+	
+	}
+
+
+function savePracticeReg()
+	{
+		alert("Save Practice registeration");
+		var registeration_name = document.getElementById("registeration_no").value;
+		var registeration_year1 = document.getElementById("registeration_year").value;
+
+		
+		
+
+		//alert("docID"+docIDGlobal);
+		let data8={
+			DoctorNo:docIDGlobal,RegistrationName:registeration_name,Year:registeration_year1,orderby:"1"
+	     };
+
+
+		var d9=JSON.stringify(data8);
+		var d10;
+		//console.log(JSON.stringify(data3));
+		if(registerCounter >= 2)
+		{	var i;
+			for( i=1;i<registerCounter;i++)
+			{	
+				
+					var registeration_name = document.getElementById("registeration_no"+i).value;
+						var registeration_year1 = document.getElementById("registeration_year"+1).value;
+				
+
+				d10  = {DoctorNo:docIDGlobal,RegistrationName:registeration_name,Year:registeration_year1,orderby:registerCounter};
+				
+				d9 += ","+ JSON.stringify(d10) ;
+				alert(d9.toString());
+			}
+		}
+		console.log("data8: "+d9)
+		//alert(data3);
+		//alert(JSON.stringify(data3));
+		
+			$.ajax({
+					url: "http://localhost/rocketmed/api/DocRegDet/",
+					method:"POST",
+					async: false,
+					contentType: 'application/json; charset=utf-8',
+					data:"["+d9+"]",
+					timeout: 36000, 
+					headers: { "Authorization": authToken },
+					error: function(xhr, status, error) {
+						  var err = eval("(" + xhr.responseText + ")");
+						  console.log("Error Message"+err.Message);		
+						alert("Error saving Membership. Pease Try Again");
+						
+					},
+					success: function(response1){
+							console.log(response1);
+							console.log("Registeration Info Updated : ");
+							alert('Registeration  Info Updated Successfully !!');
+							submit_redirect();
+							}
+				});
+	}
+
+
+
+function submit_redirect()
+{          
+	        alert("Going to doctor dashboard");
+	        var doc_url = 'doctor-dashboard.html';
+			 window.open(doc_url, "_blank" );
+}
+
+function savePracticeDocuments()
+	{
+		//ToDo: To be implemented
+	//s	on success: window.open('doctor-dashboard.html', "_self");
+	}
+(function($) {
+    "use strict";
+	
+	// Pricing Options Show
+	
+	$('#pricing_select input[name="rating_option"]').on('click', function() {
+		if ($(this).val() == 'price_free') {
+			$('#custom_price_cont').hide();
+		}
+		if ($(this).val() == 'custom_price') {
+			$('#custom_price_cont').show();
+		}
+		else {
+		}
+	});
+	
+	// Education Add More
+	
+    $(".education-info").on('click','.trash', function () {
+		$(this).closest('.education-cont').remove();
+		//educationCounter -= 1;
+		return false;
+    });
+	
+    $(".add-education").on('click', function () {
+		
+		var educationcontent = '<div class="row form-row education-cont">' +
+			'<div class="col-12 col-md-10 col-lg-11">' +
+				'<div class="row form-row">' +
+					'<div class="col-12 col-md-6 col-lg-4">' +
+						'<div class="form-group">' +
+							'<label>Degree</label>' +
+							'<input type="text" class="form-control" id="degreeID'+educationCounter+'">' +
+						'</div>' +
+					'</div>' +
+					'<div class="col-12 col-md-6 col-lg-4">' +
+						'<div class="form-group">' +
+							'<label>College/Institute</label>' +
+							'<input type="text" class="form-control" id="collegeID'+educationCounter+'">' +
+						'</div>' +
+					'</div>' +
+					'<div class="col-12 col-md-6 col-lg-4">' +
+						'<div class="form-group">' +
+							'<label>Year of Completion</label>' +
+							'<input type="text" class="form-control" id="yocID'+educationCounter+'">' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+			'</div>' +
+			'<div class="col-12 col-md-2 col-lg-1"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>' +
+		'</div>';
+		educationCounter++;
+		$(".education-info").append(educationcontent);
+		
+        return false;
+    });
+	
+	// CLinic info - Add more
+	//To be implemented
+ $(".experience-info").on('click','.trash', function () {
+		$(this).closest('.experience-cont').remove();
+		return false;
+    });
+	
+	// Experience Add More
+	
+    $(".experience-info").on('click','.trash', function () {
+		$(this).closest('.experience-cont').remove();
+		return false;
+    });
+
+    $(".add-experience").on('click', function () {
+		
+		var experiencecontent = '<div class="row form-row experience-cont">' +
+			'<div class="col-12 col-md-10 col-lg-11">' +
+				'<div class="row form-row">' +
+					'<div class="col-12 col-md-6 col-lg-4">' +
+						'<div class="form-group">' +
+							'<label>Hospital Name</label>' +
+							'<input type="text" class="form-control">' +
+						'</div>' +
+					'</div>' +
+					'<div class="col-12 col-md-6 col-lg-4">' +
+						'<div class="form-group">' +
+							'<label>From</label>' +
+							'<input type="text" class="form-control">' +
+						'</div>' +
+					'</div>' +
+					'<div class="col-12 col-md-6 col-lg-4">' +
+						'<div class="form-group">' +
+							'<label>To</label>' +
+							'<input type="text" class="form-control">' +
+						'</div>' +
+					'</div>' +
+					'<div class="col-12 col-md-6 col-lg-4">' +
+						'<div class="form-group">' +
+							'<label>Designation</label>' +
+							'<input type="text" class="form-control">' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+			'</div>' +
+			'<div class="col-12 col-md-2 col-lg-1"><label class="d-md-block d-sm-none d-none">&nbsp;</label><a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a></div>' +
+		'</div>';
+		
+        $(".experience-info").append(experiencecontent);
+        return false;
+    });
+	
+	
+	// Awards Add More
+	
+    $(".awards-info").on('click','.trash', function () {
+		$(this).closest('.awards-cont').remove();
+		return false;
+    });
+
+    $(".add-award").on('click', function () {
+
+        var regcontent = '<div class="row form-row awards-cont">' +
+			'<div class="col-12 col-md-5">' +
+				'<div class="form-group">' +
+					'<label>Awards</label>' +
+					'<input type="text" class="form-control">' +
+				'</div>' +
+			'</div>' +
+			'<div class="col-12 col-md-5">' +
+				'<div class="form-group">' +
+					'<label>Year</label>' +
+					'<input type="text" class="form-control">' +
+				'</div>' +
+			'</div>' +
+			'<div class="col-12 col-md-2">' +
+				'<label class="d-md-block d-sm-none d-none">&nbsp;</label>' +
+				'<a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
+			'</div>' +
+		'</div>';
+		
+        $(".awards-info").append(regcontent);
+        return false;
+    });
+	
+	// Membership Add More
+	
+    $(".membership-info").on('click','.trash', function () {
+		$(this).closest('.membership-cont').remove();
+		return false;
+    });
+
+    $(".add-membership").on('click', function () {
+
+        var membershipcontent = '<div class="row form-row membership-cont">' +
+			'<div class="col-12 col-md-10 col-lg-5">' +
+				'<div class="form-group">' +
+					'<label>Memberships</label>' +
+					'<input type="text" class="form-control">' +
+				'</div>' +
+			'</div>' +
+			'<div class="col-12 col-md-2 col-lg-2">' +
+				'<label class="d-md-block d-sm-none d-none">&nbsp;</label>' +
+				'<a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
+			'</div>' +
+		'</div>';
+		
+        $(".membership-info").append(membershipcontent);
+        return false;
+    });
+	
+	// Registration Add More
+	
+    $(".registrations-info").on('click','.trash', function () {
+		$(this).closest('.reg-cont').remove();
+		return false;
+    });
+
+    $(".add-reg").on('click', function () {
+
+        var regcontent = '<div class="row form-row reg-cont">' +
+			'<div class="col-12 col-md-5">' +
+				'<div class="form-group">' +
+					'<label>Registrations</label>' +
+					'<input type="text" class="form-control">' +
+				'</div>' +
+			'</div>' +
+			'<div class="col-12 col-md-5">' +
+				'<div class="form-group">' +
+					'<label>Year</label>' +
+					'<input type="text" class="form-control">' +
+				'</div>' +
+			'</div>' +
+			'<div class="col-12 col-md-2">' +
+				'<label class="d-md-block d-sm-none d-none">&nbsp;</label>' +
+				'<a href="#" class="btn btn-danger trash"><i class="far fa-trash-alt"></i></a>' +
+			'</div>' +
+		'</div>';
+		
+        $(".registrations-info").append(regcontent);
+        return false;
+    });
+	
+})(jQuery);
+
+
+
+
+
+		   </script>
+ 
+	</body>
 </html>
